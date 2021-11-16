@@ -4,13 +4,6 @@ Inspired by [Next.js's example](https://github.com/vercel/next.js/tree/canary/ex
 
 A statically generated blog example using [Next.js](https://nextjs.org/) and [WordPress](https://wordpress.org/) as headless CMS.
 
-## Demo
-
-### [https://cms.workspace.hr](https://cms.workspace.hr/)
-
-![Demo](./public/demo.png)
-
----
 
 ## How to use
 
