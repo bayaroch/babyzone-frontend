@@ -1,141 +1,120 @@
-Inspired by [Next.js's example](https://github.com/vercel/next.js/tree/canary/examples/cms-wordpress) for statically generated blog using [WordPress](https://wordpress.org/) as the data source.
+# NextJS Boilerplate
 
-# Next.js WordPress Boilerplate (starter kit)
+An opinionated boilerplate to kickstart projects using NextJS
 
-A statically generated blog example using [Next.js](https://nextjs.org/) and [WordPress](https://wordpress.org/) as headless CMS.
+**Features**
 
+- 👏🏼 Next 9.5
+- 🌊 Custom Document and App
+- ⌨️ Type safety using TypeScript in strict mode
+- 💄 Write SCSS & future CSS with PostCSS + preset-env
+- 🖊 SVG sprite for icons
+- 👀 Lint your code with TSLint & Stylelint
+- 🌈 Prettier for consistent code style
+- 🔨 Jest + Enzyme for tests
+- ☝️ Husky + lint-staged for code quality assurance
+- ⚙️ Editorconfig file for consistent indents
+- 🗄 Redux with `react-redux` and `redux-thunk`
+- 🏄‍♂️ Custom server boilerplate can be found [here](https://github.com/sanjaytwisk/nextjs-ts/tree/custom-server)
 
-## How to use
+## Getting started
 
-### Prerequisites
+Before you can start developing your awesome application you need to install the project's dependencies. Make sure you have Node (>= 10.13.0) and NPM installed and run:
 
-First, make sure you have `Node.js` (**npm** or **yarn**) installed.
-
-```
-$ node -v
-v16.x.x
-```
-
-Also, you can use `nvm` as a helpful tool to install the correct **node** and **npm**/**yarn** version.
-
-### Installing the application
-
-```
-$ git clone https://github.com/bayaroch/news
-$ cd <my-project-name>
-$ yarn
-```
-
-_This command will install all of the latest dependencies. Installation might take some time._
-
-### Set up environment variables
-
-Copy the `.env.local.example` file in this directory to `.env.local` (_which will be ignored by Git_):
-
-```bash
-cp .env.local.example .env.local
+```sh
+$ npm install
 ```
 
-Then open `.env.local` and set `WORDPRESS_API_URL`, `WORDPRESS_AUTH_REFRESH_TOKEN`, and `WORDPRESS_PREVIEW_SECRET` to match your WordPress data.
-You can find the full configuration guide here:
+### ⌨️ Development
 
-> [WordPress Configuration Guide](https://github.com/workspace-agency/nextjs-wordpress-boilerplate/blob/main/wp-configuration-guide.md)
+Once all dependencies have been installed you can start development. To start a development server on [http://localhost:3000](http://localhost:3000) run:
 
-Your `.env.local` file should look like this:
-
-```bash
-WORDPRESS_API_URL=...
-
-# Only required if you want to enable preview mode
-WORDPRESS_AUTH_REFRESH_TOKEN=
-WORDPRESS_PREVIEW_SECRET=
+```sh
+$ npm run dev
 ```
 
-### Running the application
+### 🖥 Production
 
-```
-$ yarn dev
-```
+To run your application in production make sure to run a build first:
 
-_Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser._
-
-### Building the application
-
-```
-$ yarn build
+```sh
+$ npm run build
 ```
 
-_Builds the application for production usage._
+And then start you application with a provided port number (defaults to 3000 if not provided):
 
----
-
-## Built with
-
-- [Next.js](https://github.com/vercel/next.js) as a [React](https://github.com/facebook/react/) framework for Static Generation and Server-side Rendering
-- [TypeScript](https://github.com/microsoft/TypeScript) as a language for application-scale JavaScript
-- [Sass](https://github.com/sass/dart-sass) as CSS pre-processor
-- [Material-UI](https://github.com/mui-org/material-ui) as component library
-
-## Libraries
-
-In addition several smaller libraries are used. Instructions on how to use them are linked below.
-
-| Library                                               | Purpose                                                 |
-| ----------------------------------------------------- | ------------------------------------------------------- |
-| [date-fns](https://github.com/date-fns/date-fns)      | for manipulating JavaScript dates                       |
-| [Classnames](https://github.com/JedWatson/classnames) | for conditionally joining classNames together           |
-| [ESLint](https://github.com/eslint/eslint)            | for making code more consistent and avoiding bugs       |
-| [Stylelint](https://github.com/stylelint/stylelint)   | for avoiding errors and enforcing conventions in styles |
-| [Prettier](https://github.com/prettier/prettier)      | for code formatting                                     |
-| [Husky](https://github.com/typicode/husky)            | for preventing bad commit or push                       |
-
-See `package.json` for a complete overview.
-
----
-
-## Folder structure
-
-```
-.
-├── components                                 # place for all reusable components
-│   └── {ComponentName}                        # reusable component
-│   │   ├── {ComponentName}.module.scss        # component styles
-│   │   ├── {ComponentName}.tsx                # component
-│   │   └── index.ts                           # for root component of a directory
-├── lib                                        # place to store services, config, etc.
-│   ├── api.ts                                 # API functions
-│   ├── constants.ts                           # place to store all app constants
-│   └── queries.ts                             # place to store all GraphQL queries
-├── pages                                      # place to store pages (routes); each page should match a route
-│   ├── api                                    # API routes
-│   ├── {page}                                 # place for page (route)
-│   │   ├── [param].tsx                        # dynamic page (route)
-│   │   └── index.tsx                          # page (route)
-│   ├── _app.tsx                               # custom App
-│   ├── _document.tsx                          # custom Document
-│   └── index.tsx                              # home page
-├── public                                     # place to store static files, like images
-├── styles                                     # place to store global styles
-│   ├── globals                                # place for reset and base styling
-│   ├── mixins                                 # place to store all mixins
-│   ├── settings                               # place to store all fonts, colors, and breakpoints
-│   ├── utils                                  # place to store all utility functions for styling
-│   └── index.scss                             # styling entry point
-├── types                                      # place to store all types
-└── utils                                      # place to store all utility functions that are shared across the app
-    ├── context                                # place to store all Context data
-    └── hooks                                  # place to store all custom Hooks
-
+```sh
+$ PORT=8080 npm run start
 ```
 
-## Style Guide
+### 🖨 Static
 
-As a "base" style guide, the [Airbnb's style guide](https://airbnb.io/javascript/react) is being used. Since we're applying different eslint configs that are combined with Airbnb's [config](https://yarnpkg.com/package/eslint-config-airbnb), large number of these rules are already enforced.
+You can export your application to a static website as well:
 
-## Versioning
+```sh
+npm run export
+```
 
-This project use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/workspace-agency/nextjs-wordpress-boilerplate/tags).
+This will render static HTML pages into `./out`
 
-## Contributing
+### 🧐 Linters
 
-If you're interested in contributing to this project, please first discuss the change you wish to make via issue, email, or any other method with the owner of this repository before submitting a pull request.
+The boilerplate provides a couple of linters to help you keep an eye on code consistency and type safety. There are three linters: one for CSS, one for TypeScript and one for type safety. You can use each of them separately using the following commands:
+
+```sh
+$ npm run lint:css
+$ npm run lint:ts
+$ npm run lint:types
+```
+
+TIP: To get the most out of your linters install the corresponding (Stylelint, TSLint) plugins for your editor or IDE
+
+**Prettier**
+
+Prettier helps you to enforce consistent (opinionated) code style. If possible, you can tell your editor to format you code when you save a file. If you are not able to do this, you can run prettier manually using:
+
+```sh
+$ npm run prettier
+```
+
+### 🤖 Tests
+
+You can write your tests using Jest and Enzyme. You can run all test with the following command
+
+```sh
+$ npm run test
+```
+
+If you want to follow test driven development you can use:
+
+```sh
+$ npm run test:dev
+```
+
+## Modules
+
+### TypeScript
+
+TypeScript and Babel are pre-configured with custom module resolvers.
+This means you can use absolute imports with custom namespaces by default for the following modules:
+
+```js
+/* import common library */
+import lib from '@common/<folder>/<lib>'
+/* import component */
+import Counter from '@components/counter/Counter'
+/* import container */
+import HomepageCounter from '@containers/counter/HomepageCounter'
+/* import store files */
+import { CounterAction } from '@store/counter/counterActions'
+```
+
+### SCSS
+
+By default the path `./src/common/css` is configured as an included path for our scss loader.
+This means you can import any of this folder's files directly without the relative or absolute path:
+
+```css
+@import 'variables';
+@import 'colors';
+```

@@ -1,31 +1,63 @@
-import React from 'react';
-import Head from 'next/head';
-import theme from 'styles/themes';
-import createEmotionCache from 'styles/themes/createEmotionCache';
+import React, { useEffect } from 'react'
+import { AppProps } from 'next/app'
+import { storeWrapper, StoreType } from '@store/store'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import PageWithLayoutType from '@constants/page'
+import theme from '@theme/index'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
+import { useStore } from 'react-redux'
+import { authorizationProvider } from '@services/interceptor'
+import createCache from '@emotion/cache'
 
-import { AppProps as NextAppProps } from 'next/app';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-
-import '../styles/index.scss';
-
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientSideEmotionCache = createEmotionCache();
-
-interface AppProps extends NextAppProps {
-  emotionCache?: EmotionCache;
+const createEmotionCache = () => {
+  return createCache({ key: 'css' })
 }
 
-const App: React.FC<AppProps> = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => (
-  <CacheProvider value={emotionCache}>
-    <Head>
-      <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-    </Head>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
-  </CacheProvider>
-);
+/**
+ * withRedux HOC
+ * NextJS wrapper for Redux
+ */
 
-export default App;
+const clientSideEmotionCache = createEmotionCache()
+
+type Props = AppProps & {
+  Component: PageWithLayoutType
+  pageProps: any
+  emotionCache?: EmotionCache
+}
+
+const CustomApp = ({
+  Component,
+  pageProps,
+  emotionCache = clientSideEmotionCache,
+}: Props) => {
+  const Layout = Component.Layout ? Component.Layout : React.Fragment
+  const store: StoreType = useStore()
+  authorizationProvider(store)
+
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side')
+    if (jssStyles) {
+      jssStyles.parentElement?.removeChild(jssStyles)
+    }
+  }, [])
+
+  return (
+    <CacheProvider value={emotionCache}>
+      <PersistGate persistor={persistStore(store)} loading={<div>Loading</div>}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </PersistGate>
+    </CacheProvider>
+  )
+}
+
+export default storeWrapper.withRedux(CustomApp)
