@@ -21,7 +21,7 @@ Also, you can use `nvm` as a helpful tool to install the correct **node** and **
 ### Installing the application
 
 ```
-$ git clone https://github.com/workspace-agency/nextjs-wordpress-boilerplate.git <my-project-name>
+$ git clone https://github.com/bayaroch/news
 $ cd <my-project-name>
 $ yarn
 ```
