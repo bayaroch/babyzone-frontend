@@ -17,7 +17,7 @@ interface MediaCardProps {
   title: string
   date?: string
   desc?: string
-  media: string | null
+  media?: string | undefined
   author?: {
     name?: string
     avatar?: string

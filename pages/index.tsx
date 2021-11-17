@@ -23,11 +23,13 @@ const HomePage = () => {
         key={post.id}
         title={post.title.rendered}
         date={post.date}
-        media={_.get(
-          post,
-          "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
-          null
-        )}
+        media={
+          _.get(
+            post,
+            "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
+            ''
+          ) as string
+        }
         slug={post.slug}
       />
     ))

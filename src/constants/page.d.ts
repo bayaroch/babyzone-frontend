@@ -12,7 +12,7 @@ type PageWithAuthLayoutType = NextPage & {
 }
 
 type PageWithAdminLayoutType = NextPage & {
-  Layout?: typeof AdminLayout
+ Layout?: typeof AdminLayout
 }
 
 type PageWithLayoutType =

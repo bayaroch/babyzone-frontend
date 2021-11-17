@@ -1,4 +1,4 @@
-const DOMAIN = 'http://localhost/api'
+const DOMAIN = 'http://idoctor.mn'
 const REST_API_PATH = '/wp-json/wp/v2/'
 const API_ROOT = DOMAIN + REST_API_PATH
 
