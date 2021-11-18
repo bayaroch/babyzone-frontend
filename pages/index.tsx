@@ -6,8 +6,9 @@ import usePosts from '@utils/hooks/usePosts'
 import { useEffect } from 'react'
 import MediaCard from '@components/MediaCard'
 import _ from 'lodash'
+import PageWithLayoutType from '@constants/page'
 
-const HomePage = () => {
+const HomePage: PageWithLayoutType = () => {
   const { getList, list, paginationMeta } = usePosts()
 
   useEffect(() => {
@@ -23,14 +24,18 @@ const HomePage = () => {
         key={post.id}
         title={post.title.rendered}
         date={post.date}
+        desc={post.excerpt.rendered}
+        term={
+          _.get(post, "_embedded['wp:term'][0][0].name", undefined) as string
+        }
         media={
           _.get(
             post,
-            "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
-            ''
+            "_embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url",
+            undefined
           ) as string
         }
-        slug={post.slug}
+        id={post.id}
       />
     ))
 

@@ -11,6 +11,9 @@ import { persistStore } from 'redux-persist'
 import { useStore } from 'react-redux'
 import { authorizationProvider } from '@services/interceptor'
 import createCache from '@emotion/cache'
+import moment from 'moment'
+
+moment.locale('mn')
 
 const createEmotionCache = () => {
   return createCache({ key: 'css' })
@@ -36,7 +39,7 @@ const CustomApp = ({
 }: Props) => {
   const Layout = Component.Layout ? Component.Layout : React.Fragment
   const store: StoreType = useStore()
-  authorizationProvider(store)
+  authorizationProvider()
 
   useEffect(() => {
     // Remove the server-side injected CSS.

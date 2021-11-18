@@ -10,7 +10,7 @@ export const getAllPosts = createAsyncThunk<WP_REST_API_Posts, PageMeta>(
     try {
       const res = await postServices.getAllPosts(
         matchParams,
-        'id,content,date,title,excerpt,_links.wp:featuredmedia,_embedded.wp:featuredmedia'
+        'id,content,date,slug,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded'
       )
       return res
     } catch (error) {
