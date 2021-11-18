@@ -4,29 +4,26 @@
   "description": "NextJS boilerplate with TypeScript and Redux",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
-    "test:dev": "jest --watchAll",
-    "start": "NODE_ENV=production PORT=$PORT next start",
-    "build": "rm -rf .next && next build",
     "dev": "next dev",
-    "export": "yarn run build && next export",
-    "prettier": "prettier  --write **/*.{ts,tsx,js}",
-    "lint:ts": "npm run prettier && tslint -c tslint.json -t stylish --fix {pages,src,server}/**/*.{ts,tsx}",
-    "lint:scss": "stylelint --fix {src,pages}/**/*.scss",
-    "lint:types": "tsc -p . --noEmit"
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "test": "jest -u",
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "post-merge": "sh hooks/post-merge.sh",
-      "post-rewrite": "sh hooks/post-merge.sh"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run type-check"
     }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run lint:ts"
-    ],
-    "*.scss": [
-      "npm run lint:scss"
+      "yarn lint",
+      "yarn format"
     ]
   },
   "keywords": [
@@ -90,6 +87,8 @@
     "@types/react": "16.9.27",
     "@types/react-redux": "7.1.7",
     "@types/svg-sprite-loader": "3.9.1",
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "@typescript-eslint/parser": "4.14.2",
     "@zeit/next-sass": "1.0.1",
     "acorn": "7.1.1",
     "babel-core": "6.26.3",
@@ -99,7 +98,10 @@
     "babel-plugin-styled-components": "^1.10.6",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
-    "husky": "4.2.3",
+    "eslint": "7.19.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-plugin-react": "7.19.0",
+    "husky": "^7.0.4",
     "identity-obj-proxy": "3.0.0",
     "jest": "25.2.4",
     "jest-svg-transformer": "1.0.0",
@@ -118,6 +120,6 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-eslint-rules": "5.4.0",
     "tslint-react": "4.2.0",
-    "typescript": "3.8.3"
+    "typescript": "^4.5.0-dev.20210815"
   }
 }
