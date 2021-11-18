@@ -7,9 +7,10 @@ import { useEffect } from 'react'
 import MediaCard from '@components/MediaCard'
 import _ from 'lodash'
 import PageWithLayoutType from '@constants/page'
+import MainLayout from '@components/Layouts/MainLayout'
 
 const HomePage: PageWithLayoutType = () => {
-  const { getList, list, paginationMeta } = usePosts()
+  const { getList, list } = usePosts()
 
   useEffect(() => {
     getList({ per_page: 10, page: 1 })
@@ -43,3 +44,5 @@ const HomePage: PageWithLayoutType = () => {
 }
 
 export default HomePage
+
+HomePage.Layout = MainLayout

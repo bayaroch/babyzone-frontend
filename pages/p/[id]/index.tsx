@@ -1,20 +1,23 @@
 /*
- * Homepage
+ * Detail Page
  */
+import { WP_REST_API_Posts } from 'wp-types'
+import { URI } from '@constants/uri.constants'
+import MainLayout from '@components/Layouts/MainLayout'
 
-import PageWithLayoutType from '@constants/page'
-
-const Detail: PageWithLayoutType = ({ posts }: any) => {
-  console.log(posts)
-
-  return <>{}</>
+interface PostPageProps {
+  posts: WP_REST_API_Posts
 }
 
-Detail.getInitialProps = async ({ query }) => {
+const Detail = ({ posts }: PostPageProps) => {
+  console.log(posts)
+
+  return <MainLayout>{JSON.stringify(posts)}</MainLayout>
+}
+
+Detail.getInitialProps = async ({ query }: any) => {
   const { id } = query
-  const res = await fetch(
-    `http://localhost/api/wp-json/wp/v2/posts?filter[p]=${id}`
-  )
+  const res = await fetch(`${URI.ALL_POSTS}?filter[p]=${id}`)
   const json = await res.json()
   return { posts: json[0] }
 }
