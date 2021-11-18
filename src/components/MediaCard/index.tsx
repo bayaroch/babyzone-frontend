@@ -28,9 +28,8 @@ interface MediaCardProps {
 }
 
 const MediaCard: React.FC<MediaCardProps> = (props) => {
-  const { title, date, desc, media, author, id, term } = props
+  const { title, date, desc, media, id, term } = props
   const router = useRouter()
-
   const time = date ? CommonHelper.staticSmartTime(date) : ''
   return (
     <Card sx={{ maxWidth: '100%', marginBottom: 10 }}>

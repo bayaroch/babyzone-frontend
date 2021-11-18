@@ -1,9 +1,7 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import React, { ReactElement } from 'react'
 
-type Props = {}
-
-class Document extends NextDocument<Props> {
+class Document extends NextDocument {
   render(): ReactElement {
     return (
       <Html>

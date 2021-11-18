@@ -1,11 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit'
-import { PostItem } from '../actions/types'
 import * as actions from '../actions'
 import { PageMeta } from '@services/post.services'
-import _ from 'lodash'
+import { WP_REST_API_Posts } from 'wp-types'
 
 export type PostState = {
-  postList: PostItem[] | undefined
+  postList: WP_REST_API_Posts | undefined
   postListMeta?: PageMeta | undefined
 }
 

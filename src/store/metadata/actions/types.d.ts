@@ -15,7 +15,7 @@ export type MetaAction = {
 interface Meta {
   pending: boolean
   loaded: boolean
-  error: boolean | object
+  error: boolean | string
 }
 
 interface MetaReducerType {

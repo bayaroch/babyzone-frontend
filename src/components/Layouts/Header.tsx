@@ -3,7 +3,6 @@ interface HeaderProps {
   setOpen: (open: boolean) => void
 }
 
-export const Header: React.FC<HeaderProps> = ({ open, setOpen }) => {
-  console.log(open)
+export const Header: React.FC<HeaderProps> = () => {
   return <div className="header">header</div>
 }

@@ -2,7 +2,7 @@ import { METADATA_ACTION_TYPE } from './types.d'
 
 export const metaActions = {
   clearGlobalMeta: (field?: string | null) => {
-    return (dispatch: Function) => {
+    return (dispatch: any) => {
       dispatch(clearGlobalMetaCreator(field))
     }
   },

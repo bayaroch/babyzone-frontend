@@ -16,8 +16,6 @@ const HomePage: PageWithLayoutType = () => {
     getList({ per_page: 10, page: 1 })
   }, [])
 
-  console.log(list && list[0]._embedded)
-
   const listItems =
     list &&
     list.map((post) => (
