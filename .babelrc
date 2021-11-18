@@ -10,7 +10,7 @@
             "alias": {
               "@components": "./src/components",
               "@containers": "./src/containers",
-              "@common": "./src/common",
+              "@css": "./src/css",
               "@store": "./src/store",
               "@constants": "./src/constants",
               "@services": "./src/services",
@@ -32,7 +32,7 @@
             "alias": {
               "@components": "./src/components",
               "@containers": "./src/containers",
-              "@common": "./src/common",
+              "@css": "./src/css",
               "@store": "./src/store",
               "@constants": "./src/constants",
               "@services": "./src/services",
@@ -63,7 +63,7 @@
             "alias": {
               "@components": "./src/components",
               "@containers": "./src/containers",
-              "@common": "./src/common",
+              "@css": "./src/css",
               "@store": "./src/store",
               "@constants": "./src/constants",
               "@services": "./src/services",

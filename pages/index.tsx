@@ -38,7 +38,7 @@ const HomePage: PageWithLayoutType = () => {
       />
     ))
 
-  return <div style={{ maxWidth: 600 }}>{listItems}</div>
+  return <div style={{ maxWidth: 600, margin: '0 auto' }}>{listItems}</div>
 }
 
 export default HomePage

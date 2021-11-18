@@ -1,4 +1,5 @@
 import parse, { HTMLReactParserOptions } from 'html-react-parser'
+import Box from '@mui/material/Box'
 
 interface HtmlParserProps {
   html: string
@@ -8,7 +9,7 @@ interface HtmlParserProps {
 const HTMLParser: React.FC<HtmlParserProps> = (props) => {
   const { html, options } = props
 
-  return <>{parse(html, options && options)}</>
+  return <Box>{parse(html, options)}</Box>
 }
 
 export default HTMLParser

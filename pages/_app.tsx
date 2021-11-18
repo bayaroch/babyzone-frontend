@@ -12,6 +12,7 @@ import { useStore } from 'react-redux'
 import { authorizationProvider } from '@services/interceptor'
 import createCache from '@emotion/cache'
 import moment from 'moment'
+import '@css/content.scss'
 
 moment.locale('mn')
 
