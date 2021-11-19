@@ -4,5 +4,5 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = () => {
-  return <div className="header">header</div>
+  return <div className="header"></div>
 }

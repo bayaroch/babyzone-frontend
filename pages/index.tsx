@@ -8,9 +8,12 @@ import MediaCard from '@components/MediaCard'
 import _ from 'lodash'
 import PageWithLayoutType from '@constants/page'
 import MainLayout from '@components/Layouts/MainLayout'
+import Intro from '@containers/Intro'
+import { Typography } from '@mui/material'
 
 const HomePage: PageWithLayoutType = () => {
   const { getList, list } = usePosts()
+  const isPublic = false
 
   useEffect(() => {
     getList({ per_page: 10, page: 1 })
@@ -38,7 +41,23 @@ const HomePage: PageWithLayoutType = () => {
       />
     ))
 
-  return <div style={{ maxWidth: 600, margin: '0 auto' }}>{listItems}</div>
+  return (
+    <div style={{ maxWidth: 600, margin: '0 auto' }}>
+      {isPublic ? (
+        <>
+          <Intro />
+          {listItems}
+        </>
+      ) : (
+        <>
+          <Typography variant="h2" mt={3} mb={4} align="center">
+            Coming Soon
+          </Typography>
+          <img src="./images/logo-full.svg" width={'100%'} height="auto" />
+        </>
+      )}
+    </div>
+  )
 }
 
 export default HomePage

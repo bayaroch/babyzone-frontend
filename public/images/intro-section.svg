@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="639px" height="369px" viewBox="0 0 639 369" enable-background="new 0 0 639 369" xml:space="preserve">
+<filter  height="107.1%" width="100.2%" id="filter-3" filterUnits="objectBoundingBox" y="-3.6%" x="-0.1%">
+	<feOffset  result="shadowOffsetInner1" in="SourceAlpha" dy="1" dx="0"></feOffset>
+	<feComposite  k3="1" k2="-1" operator="arithmetic" in2="SourceAlpha" result="shadowInnerInner1" in="shadowOffsetInner1">
+		</feComposite>
+	
+		<feColorMatrix  type="matrix" values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.5 0" result="shadowMatrixInner1" in="shadowInnerInner1">
+		</feColorMatrix>
+	<feOffset  result="shadowOffsetInner2" in="SourceAlpha" dy="-1" dx="0"></feOffset>
+	<feComposite  k3="1" k2="-1" operator="arithmetic" in2="SourceAlpha" result="shadowInnerInner2" in="shadowOffsetInner2">
+		</feComposite>
+	
+		<feColorMatrix  type="matrix" values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 0.5 0" result="shadowMatrixInner2" in="shadowInnerInner2">
+		</feColorMatrix>
+	<feMerge>
+		<feMergeNode  in="shadowMatrixInner1"></feMergeNode>
+		<feMergeNode  in="shadowMatrixInner2"></feMergeNode>
+	</feMerge>
+</filter>
+<title>intro-section-image01</title>
+<g id="_x30_1-All-pages">
+	<g id="_x31_-Home" transform="translate(-681.000000, -271.000000)">
+		<g id="Header" transform="translate(0.000000, 96.000000)">
+			<g id="Group-4" transform="translate(608.000000, 74.000000)">
+				<g id="Home-header-Image" transform="translate(73.000000, 14.000000)">
+					<g id="intro-section-image01" transform="translate(0.000000, 87.000000)">
+						<g id="_xD83D__xDC69__x200D__xD83D__xDCBB_" transform="translate(0.560000, 0.920000)">
+							
+								<linearGradient id="Rectangle_6_" gradientUnits="userSpaceOnUse" x1="-159.8647" y1="458.963" x2="-159.8647" y2="457.963" gradientTransform="matrix(516 0 0 -22 82808.6484 10420.251)">
+								<stop  offset="0" style="stop-color:#DCE3EB"/>
+								<stop  offset="1" style="stop-color:#EBF0F7"/>
+							</linearGradient>
+							<rect id="Rectangle" x="60.44" y="323.079" fill="url(#Rectangle_6_)" width="516" height="22"/>
+							<path id="Rectangle_1_" fill="#FFFFFF" stroke="#DCE3EB" stroke-width="1.76" d="M77.32,0.96h482.24c8.837,0,16,7.163,16,16
+								v303.239c0,8.837-7.163,16-16,16H77.32c-8.836,0-16-7.163-16-16V16.96C61.32,8.123,68.483,0.96,77.32,0.96z"/>
+							
+								<rect id="Rectangle_2_" x="77" y="19.64" fill="#FFFFFF" stroke="#E7ECEE" stroke-width="0.88" width="483.88" height="306.88"/>
+							<g id="Rectangle_3_">
+								<g>
+									<path id="path-2" fill="#EBF0F7" d="M1.76,345.079h634.48c0.973,0,1.76,0.788,1.76,1.761v12.319l0,0H0V346.84
+										C0,345.867,0.788,345.079,1.76,345.079z"/>
+								</g>
+								<g filter="url(#filter-3)">
+									<path id="path-2_2_" d="M1.76,345.079h634.48c0.973,0,1.76,0.788,1.76,1.761v12.319l0,0H0V346.84
+										C0,345.867,0.788,345.079,1.76,345.079z"/>
+								</g>
+							</g>
+							
+								<linearGradient id="Rectangle_7_" gradientUnits="userSpaceOnUse" x1="-159.9018" y1="449.8625" x2="-159.9018" y2="448.8625" gradientTransform="matrix(638 0 0 -7.92 102336.2188 3922.0645)">
+								<stop  offset="0" style="stop-color:#EBF0F7"/>
+								<stop  offset="1" style="stop-color:#919CAB"/>
+							</linearGradient>
+							<path id="Rectangle_4_" fill="url(#Rectangle_7_)" d="M0,359.159h638l-13.648,5.119c-4.94,1.853-10.174,2.801-15.45,2.801
+								H29.258c-5.382,0-10.72-0.968-15.758-2.857L0,359.159L0,359.159z"/>
+							<g id="Rectangle_5_">
+								<g>
+									<path id="path-6" fill="#DCE3EB" d="M274.56,345.079h89.76c0,4.86-3.94,8.801-8.8,8.801h-72.16
+										C278.5,353.88,274.56,349.94,274.56,345.079L274.56,345.079L274.56,345.079z"/>
+								</g>
+								<g>
+									
+										<linearGradient id="path-6_2_" gradientUnits="userSpaceOnUse" x1="-159.4365" y1="450.7853" x2="-158.4517" y2="450.7844" gradientTransform="matrix(89.76 0 0 -8.8 14585.5576 4316.3931)">
+										<stop  offset="0" style="stop-color:#BEC7CA"/>
+										<stop  offset="0.0931" style="stop-color:#C7CFD1;stop-opacity:0"/>
+										<stop  offset="0.9009" style="stop-color:#D3D9DB;stop-opacity:0"/>
+										<stop  offset="1" style="stop-color:#BEC7CA"/>
+									</linearGradient>
+									<path id="path-6_1_" fill="url(#path-6_2_)" d="M274.56,345.079h89.76c0,4.86-3.94,8.801-8.8,8.801h-72.16
+										C278.5,353.88,274.56,349.94,274.56,345.079L274.56,345.079L274.56,345.079z"/>
+								</g>
+							</g>
+						</g>
+						<rect id="Rectangle_9_" x="153.68" y="35.36" fill="#FFFFFF" width="407.44" height="14.96"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
