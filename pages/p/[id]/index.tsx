@@ -21,11 +21,13 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
         </Typography>
         <img
           style={{ maxWidth: '100%', height: 'auto' }}
-          src={_.get(
-            article,
-            "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
-            ''
-          )}
+          src={
+            _.get(
+              article,
+              "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
+              ''
+            ) as string
+          }
         />
         <Content
           padding={3}
