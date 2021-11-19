@@ -1,0 +1,8 @@
+{
+  "name": "Babyzone",
+  "short_name": "Babyzone",
+  "theme_color": "#000000",
+  "background_color": "#FFFFFF",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
