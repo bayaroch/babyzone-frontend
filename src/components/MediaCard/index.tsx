@@ -59,7 +59,7 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
 
       <CardContent>
         <h3>{title}</h3>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" component="div" color="text.secondary">
           {desc && <HTMLParser html={desc} />}
         </Typography>
       </CardContent>
