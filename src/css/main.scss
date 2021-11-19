@@ -1,0 +1,52 @@
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-Semibold.eot');
+  src: local('Averta CY Semibold'), local('AvertaCY-Bold'),
+    url('/fonts/subset-AvertaCY-Semibold.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-Semibold.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-Semibold.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-Extrabold.eot');
+  src: local('Averta CY Extrabold'), local('AvertaCY-Extrabold'),
+    url('/fonts/subset-AvertaCY-Extrabold.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-Extrabold.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-Extrabold.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-Extrabold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-Regular.eot');
+  src: local('Averta CY Regular'), local('AvertaCY-Regular'),
+    url('/fonts/subset-AvertaCY-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-Regular.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-Regular.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Averta CY';
+  src: url('/fonts/subset-AvertaCY-RegularItalic.eot');
+  src: local('Averta CY Regular Italic'), local('AvertaCY-RegularItalic'),
+    url('/fonts/subset-AvertaCY-RegularItalic.eot?#iefix')
+      format('embedded-opentype'),
+    url('/fonts/subset-AvertaCY-RegularItalic.woff2') format('woff2'),
+    url('/fonts/subset-AvertaCY-RegularItalic.woff') format('woff'),
+    url('/fonts/subset-AvertaCY-RegularItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@import './content.scss';
