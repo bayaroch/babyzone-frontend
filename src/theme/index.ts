@@ -2,13 +2,13 @@ import { createTheme } from '@mui/material/styles'
 import { Colors } from '@theme/colors'
 import { breakpointValues } from '@theme/variables'
 
+export const userBreakpoints = breakpointValues
+
 const font =
   "'Averta CY', 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
 
 const $titlefamily =
   "'Averta CY', 'Open Sans', 'Helvetica Neue', 'Helvetica','Arial', sans-serif"
-
-export const userBreakpoints = breakpointValues
 
 export default createTheme({
   palette: {

@@ -13,19 +13,15 @@ import { authorizationProvider } from '@services/interceptor'
 import createCache from '@emotion/cache'
 import moment from 'moment'
 import '@css/main.scss'
+import { StylesProvider } from '@mui/styles'
 
 moment.locale('mn')
 
-const createEmotionCache = () => {
-  return createCache({ key: 'css' })
-}
-
+export const cache = createCache({ key: 'css', prepend: true })
 /**
  * withRedux HOC
  * NextJS wrapper for Redux
  */
-
-const clientSideEmotionCache = createEmotionCache()
 
 type Props = AppProps & {
   Component: PageWithLayoutType
@@ -33,11 +29,7 @@ type Props = AppProps & {
   emotionCache?: EmotionCache
 }
 
-const CustomApp = ({
-  Component,
-  pageProps,
-  emotionCache = clientSideEmotionCache,
-}: Props) => {
+const CustomApp = ({ Component, pageProps }: Props) => {
   const Layout = Component.Layout ? Component.Layout : React.Fragment
   const store: StoreType = useStore()
   authorizationProvider()
@@ -51,16 +43,21 @@ const CustomApp = ({
   }, [])
 
   return (
-    <CacheProvider value={emotionCache}>
-      <PersistGate persistor={persistStore(store)} loading={<div>Loading</div>}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </PersistGate>
-    </CacheProvider>
+    <StylesProvider injectFirst>
+      <CacheProvider value={cache}>
+        <PersistGate
+          persistor={persistStore(store)}
+          loading={<div>Loading</div>}
+        >
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </PersistGate>
+      </CacheProvider>
+    </StylesProvider>
   )
 }
 

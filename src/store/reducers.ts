@@ -2,15 +2,18 @@ import { combineReducers, Reducer } from 'redux'
 import metadata from '@store/metadata'
 import posts from '@store/posts'
 import { HYDRATE } from 'next-redux-wrapper'
+import taxonomy from '@store/taxonomy'
 
 export interface AppState {
   metadata: any
   posts: any
+  taxonomy: any
 }
 
 const combinedReducers = combineReducers({
   metadata: metadata.reducer,
   posts: posts.reducer,
+  taxonomy: taxonomy.reducer,
 })
 
 const reducer: Reducer<any> = (state, action) => {

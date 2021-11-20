@@ -6,7 +6,7 @@ import { PageMeta } from '@services/post.services'
 import { WP_REST_API_Posts } from 'wp-types'
 
 const { selectors, actions } = searchStore
-const getAllMatchesMeta = createMetaSelector(actions.getAllPosts)
+const getPostsMeta = createMetaSelector(actions.getAllPosts)
 
 const usePosts = (): {
   meta: Meta
@@ -15,8 +15,8 @@ const usePosts = (): {
   paginationMeta: PageMeta
 } => {
   const dispatch = useDispatch()
-  const meta = useSelector(getAllMatchesMeta)
-  const list = useSelector(selectors.matches)
+  const meta = useSelector(getPostsMeta)
+  const list = useSelector(selectors.posts)
   const paginationMeta = useSelector(selectors.paginationMeta)
   const getList = (params: PageMeta) => dispatch(actions.getAllPosts(params))
 

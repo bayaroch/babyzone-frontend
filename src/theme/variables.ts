@@ -2,7 +2,6 @@
  * App Variables:
  * This contains all the color config for the application
  */
-
 export const breakpointValues = {
   xs: 0,
   sm: 414 /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */,
