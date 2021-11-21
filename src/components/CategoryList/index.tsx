@@ -121,6 +121,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
               borderTop: '1px solid #eee',
               paddingTop: 2,
               paddingBottom: 2,
+              marginTop: 1,
             }}
           >
             <Avatar
