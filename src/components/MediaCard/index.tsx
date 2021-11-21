@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
-import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -11,7 +10,7 @@ import HTMLParser from '@components/HtmlParser'
 import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import CardActions from '@mui/material/CardActions'
-import { Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
 interface MediaCardProps {
@@ -25,6 +24,7 @@ interface MediaCardProps {
   }
   id: number
   term?: string
+  onLoad?: () => void
 }
 
 const MediaCard: React.FC<MediaCardProps> = (props) => {
@@ -32,7 +32,7 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
   const router = useRouter()
   const time = date ? CommonHelper.staticSmartTime(date) : ''
   return (
-    <Card sx={{ maxWidth: '100%', marginBottom: 10 }}>
+    <Card sx={{ maxWidth: '100%' }}>
       <CardHeader
         avatar={
           <Stack direction="row" spacing={1}>
@@ -46,17 +46,22 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
         }
         subheader={time}
       />
-      {media ? (
-        <CardMedia
-          component="img"
-          height="auto"
-          image={media}
-          alt="Paella dish"
-        />
-      ) : (
-        ''
-      )}
-
+      <Box position={'relative'} pt="100%">
+        <Box
+          height={'100%'}
+          width={'100%'}
+          position="absolute"
+          top={0}
+          bottom={0}
+          left={0}
+          right={0}
+        >
+          <img
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={media}
+          />
+        </Box>
+      </Box>
       <CardContent>
         <h3>{title}</h3>
         <Typography variant="body2" component="div" color="text.secondary">
