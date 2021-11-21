@@ -12,7 +12,17 @@ const Header: React.FC<HeaderProps> = (props) => {
   return (
     <Box className={classes.header}>
       <Container maxWidth="lg" className={classes.container}>
-        <Box className={classes.logoContainer}>
+        <Box
+          className={classes.logoContainer}
+          sx={{
+            margin: {
+              sm: '0 auto',
+            },
+            textAlign: {
+              sm: 'center',
+            },
+          }}
+        >
           <a className={classes.linkLogo} href="/">
             <img src="/images/logo-full.svg" />
           </a>
@@ -47,8 +57,8 @@ const useStyles = makeStyles(() => ({
   linkLogo: {
     display: 'block',
     '& img': {
-      maxWidth: '100%',
-      height: 'auto',
+      width: 'auto',
+      height: '40px',
     },
   },
   hamburgerHolder: {

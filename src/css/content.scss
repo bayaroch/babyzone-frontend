@@ -1,7 +1,6 @@
 .content {
   /* Fonts */
   /* Note that Montserrat is enqueued in the PHP function that enqueues this file */
-
   img {
     max-width: 100%;
     height: auto !important;
@@ -87,5 +86,15 @@
   b {
     font-weight: 700;
     font-size: 18px;
+  }
+  figure {
+    margin: 0;
+  }
+  a {
+    color: #ed4d8b;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

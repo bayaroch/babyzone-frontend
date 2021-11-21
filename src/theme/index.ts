@@ -34,7 +34,7 @@ export default createTheme({
   typography: {
     fontFamily: font,
     h1: {
-      fontSize: 22,
+      fontSize: 28,
       fontWeight: 600,
       fontFamily: $titlefamily,
     }, // lets all big titles

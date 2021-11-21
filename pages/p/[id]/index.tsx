@@ -7,7 +7,8 @@ import MainLayout from '@components/Layouts/MainLayout'
 import PageWithLayoutType from '@constants/page'
 import _ from 'lodash'
 import Content from '@components/Content'
-import { Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
+import { Author } from '@components/PostElements/index'
 
 const Detail: PageWithLayoutType = ({ posts }: any) => {
   const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
@@ -15,10 +16,32 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
   console.log(article)
   return (
     <MainLayout>
-      <div style={{ maxWidth: 800, margin: '0 auto' }}>
-        <Typography mb={3} variant="h1" align="center">
+      <Container
+        maxWidth={'lg'}
+        sx={{
+          padding: {
+            sm: 0,
+            xs: 0,
+          },
+        }}
+      >
+        <Typography
+          mb={3}
+          variant="h1"
+          align="center"
+          sx={{
+            padding: 1,
+            fontSize: {
+              lg: 28,
+              md: 20,
+              sm: 18,
+              xs: 16,
+            },
+          }}
+        >
           {article && article.title.rendered}
         </Typography>
+
         <img
           style={{ maxWidth: '100%', height: 'auto' }}
           src={
@@ -29,11 +52,32 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
             ) as string
           }
         />
-        <Content
-          padding={3}
-          content={article ? article.content.rendered : ''}
-        />
-      </div>
+        <Grid container spacing={1}>
+          <Grid xs={12} md={2} item>
+            <Author
+              author={{
+                name: _.get(article, '_embedded.author[0].name', '') as string,
+                link: _.get(article, '_embedded.author[0].url', '') as string,
+              }}
+            />
+          </Grid>
+          <Grid xs={12} md={8} item>
+            <Content
+              content={article ? article.content.rendered : ''}
+              sx={{
+                padding: {
+                  xs: 0,
+                  md: 1,
+                  lg: 4,
+                },
+              }}
+            />
+          </Grid>
+          <Grid xs={12} md={2} item>
+            share
+          </Grid>
+        </Grid>
+      </Container>
     </MainLayout>
   )
 }
