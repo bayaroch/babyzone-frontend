@@ -4,6 +4,7 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import { Avatar, Box } from '@mui/material'
 import _ from 'lodash'
+import { Colors } from '@theme/colors'
 
 interface CategoryListProps {
   data: WP_REST_API_Term[]
@@ -58,11 +59,26 @@ const CategoryList: React.FC<CategoryListProps> = ({
               <Box sx={{ fontSize: 12, color: '#999' }}>{cat.count}</Box>
             }
           >
-            <Avatar
-              sx={{ width: 30, height: 30 }}
-              alt={cat.name}
-              src={_.get(cat, 'acf.image', '') as string}
-            />
+            <Box
+              style={{
+                borderRadius: 36,
+                height: 36,
+                width: 36,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                border:
+                  category === cat.id
+                    ? `1px solid ${Colors.primary}`
+                    : '0 none',
+              }}
+            >
+              <Avatar
+                sx={{ width: 30, height: 30 }}
+                alt={cat.name}
+                src={_.get(cat, 'acf.image', '') as string}
+              />
+            </Box>
             <ListItemText
               sx={{
                 paddingLeft: '10px',

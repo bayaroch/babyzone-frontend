@@ -16,6 +16,7 @@ import '@css/main.scss'
 import { StylesProvider } from '@mui/styles'
 import Seo from '@components/Seo'
 import _ from 'lodash'
+import { Box } from '@mui/material'
 
 moment.locale('mn')
 
@@ -64,7 +65,17 @@ const CustomApp = ({ Component, pageProps }: Props) => {
         />
         <PersistGate
           persistor={persistStore(store)}
-          loading={<div>Loading</div>}
+          loading={
+            <Box
+              width="100%"
+              height={500}
+              display="flex"
+              justifyContent={'center'}
+              alignItems="center"
+            >
+              <img src={'/images/loader.gif'} />
+            </Box>
+          }
         >
           <ThemeProvider theme={theme}>
             <CssBaseline />
