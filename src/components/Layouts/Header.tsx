@@ -179,7 +179,7 @@ const useStyles = makeStyles(() => ({
   },
   hamburgerBox: {
     width: '26px',
-    height: '21px',
+    height: '26px',
     display: 'inline-block',
     position: 'relative',
   },
