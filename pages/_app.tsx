@@ -73,7 +73,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               justifyContent={'center'}
               alignItems="center"
             >
-              <img src={'/images/loader.gif'} />
+              <img src={'/images/loader-white.gif'} />
             </Box>
           }
         >
