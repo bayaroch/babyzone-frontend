@@ -9,9 +9,13 @@ import _ from 'lodash'
 import Content from '@components/Content'
 import { Container, Grid, Typography } from '@mui/material'
 import { Author, Share } from '@components/PostElements/index'
+import { CommonHelper } from '@utils/helpers/CommonHelper'
 
 const Detail: PageWithLayoutType = ({ posts }: any) => {
   const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
+
+  const time = article.date ? CommonHelper.staticSmartTime(article.date) : ''
+
   return (
     <MainLayout>
       <Container
@@ -24,7 +28,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
         }}
       >
         <Typography
-          mb={3}
+          mb={1}
           variant="h1"
           align="center"
           sx={{
@@ -39,9 +43,12 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
         >
           {article && article.title.rendered}
         </Typography>
+        <Typography mb={2} color={'#aaa'} variant="body2" align="center">
+          {time}
+        </Typography>
 
         <img
-          style={{ maxWidth: '100%', height: 'auto' }}
+          style={{ width: '100%', height: 'auto' }}
           src={
             _.get(
               article,

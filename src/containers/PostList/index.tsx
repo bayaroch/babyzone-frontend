@@ -88,11 +88,16 @@ const PostList: React.FC<PostListProps> = ({ category }) => {
                 ) as string
               }
               media={
-                _.get(
+                (_.get(
                   post,
                   "_embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url",
                   undefined
-                ) as string
+                ) as string) ||
+                (_.get(
+                  post,
+                  "_embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url",
+                  undefined
+                ) as string)
               }
               id={post.id}
             />

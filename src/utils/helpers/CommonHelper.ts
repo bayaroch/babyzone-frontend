@@ -6,7 +6,7 @@ const staticSmartTime = (time: string | number): string => {
   const given = moment(timestamp).format('YYYY-MM-DD')
   const diff = currentDate.diff(given, 'days', false)
   if (diff > 30) {
-    return moment(timestamp).format('LL')
+    return moment(timestamp).format('L')
   } else {
     return moment(timestamp).fromNow()
   }
