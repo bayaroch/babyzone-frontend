@@ -1,5 +1,7 @@
 import { Box, Container } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import { useRouter } from 'next/router'
 
 interface HeaderProps {
   open: boolean
@@ -9,6 +11,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = (props) => {
   const { open, setOpen } = props
   const classes = useStyles()
+  const router = useRouter()
   return (
     <Box className={classes.header}>
       <Container
@@ -16,6 +19,31 @@ const Header: React.FC<HeaderProps> = (props) => {
         maxWidth="lg"
         className={classes.container}
       >
+        {router.asPath !== '/' ? (
+          <Box
+            sx={{
+              position: 'absolute',
+              cursor: 'pointer',
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              justifyContent: 'center',
+              width: 50,
+              alignItems: 'center',
+              display: {
+                lg: 'none',
+                md: 'flex',
+                sm: 'flex',
+              },
+            }}
+            onClick={() => router.push('/')}
+          >
+            <ArrowBackIosNewIcon />
+          </Box>
+        ) : (
+          ''
+        )}
         <Box
           className={classes.logoContainer}
           sx={{

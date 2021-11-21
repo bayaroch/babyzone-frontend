@@ -61,6 +61,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               ''
             ) as string
           }
+          canonical={'https://babyzone.mn'}
         />
         <PersistGate
           persistor={persistStore(store)}

@@ -36,6 +36,7 @@ const Seo: React.FC<SeoProps> = ({
     <meta name="twitter:description" content={description} />
     <meta name="twitter:site" content="babyzone.mn" />
     <meta name="twitter:creator" content="babyzone" />
+
     {css && <link rel="stylesheet" href={`${css}`} />}
     {image ? (
       <meta property="og:image" content={`${image}`} />

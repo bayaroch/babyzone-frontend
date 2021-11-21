@@ -11,7 +11,7 @@ import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import CardActions from '@mui/material/CardActions'
 import { Box, Button } from '@mui/material'
-import { useRouter } from 'next/router'
+import _ from 'lodash'
 
 interface MediaCardProps {
   title: string
@@ -25,12 +25,13 @@ interface MediaCardProps {
   id: number
   term?: string
   onLoad?: () => void
+  onPress?: (id: number) => void
 }
 
 const MediaCard: React.FC<MediaCardProps> = (props) => {
-  const { title, date, desc, media, id, term } = props
-  const router = useRouter()
+  const { title, date, desc, media, id, term, onPress } = props
   const time = date ? CommonHelper.staticSmartTime(date) : ''
+
   return (
     <Card
       sx={{
@@ -59,7 +60,12 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
         }
         subheader={time}
       />
-      <Box position={'relative'} pt="100%">
+      <Box
+        position={'relative'}
+        sx={{ cursor: 'pointer' }}
+        onClick={() => onPress && onPress(id)}
+        pt="100%"
+      >
         <Box
           height={'100%'}
           width={'100%'}
@@ -78,11 +84,19 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
       <CardContent>
         <Typography variant="h2">{title}</Typography>
         <Typography variant="body2" component="div" color="text.secondary">
-          {desc && <HTMLParser html={desc} />}
+          {desc && (
+            <HTMLParser
+              html={_.truncate(desc, { length: 160, separator: '...' })}
+            />
+          )}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button onClick={() => id && router.push(`/p/${id}`)}>
+      <CardActions sx={{ borderTop: '1px solid #eee' }}>
+        <Button
+          onClick={() => onPress && onPress(id)}
+          size="small"
+          color="primary"
+        >
           Дэлгэрэнгүй
         </Button>
       </CardActions>
