@@ -61,7 +61,7 @@ const PostList: React.FC<PostListProps> = ({ category }) => {
               padding: {
                 lg: '4px',
                 md: '4px,',
-                sm: '4px',
+                sm: '0',
                 xs: '0',
               },
             }}

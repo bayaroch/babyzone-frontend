@@ -27,8 +27,8 @@ const Author: React.FC<AuthorProps> = ({ author, ...rest }) => {
           <Avatar
             sx={{
               background: (theme) => theme.palette.primary.main,
-              width: '30px',
-              height: '30px',
+              width: '40px',
+              height: '40px',
               color: '#fff',
             }}
           >

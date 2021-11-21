@@ -11,11 +11,16 @@ const Header: React.FC<HeaderProps> = (props) => {
   const classes = useStyles()
   return (
     <Box className={classes.header}>
-      <Container maxWidth="lg" className={classes.container}>
+      <Container
+        sx={{ padding: { lg: 0 } }}
+        maxWidth="lg"
+        className={classes.container}
+      >
         <Box
           className={classes.logoContainer}
           sx={{
             margin: {
+              lg: '0',
               sm: '0 auto',
             },
             textAlign: {
