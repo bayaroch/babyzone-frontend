@@ -45,7 +45,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
           src={
             _.get(
               article,
-              "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
+              "_embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url",
               ''
             ) as string
           }
