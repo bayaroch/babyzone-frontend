@@ -35,6 +35,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                 lg: 'none',
                 md: 'flex',
                 sm: 'flex',
+                xs: 'flex',
               },
             }}
             onClick={() => router.push('/')}
@@ -50,9 +51,11 @@ const Header: React.FC<HeaderProps> = (props) => {
             margin: {
               lg: '0',
               sm: '0 auto',
+              xs: '0 auto',
             },
             textAlign: {
               sm: 'center',
+              xs: 'center',
             },
           }}
         >

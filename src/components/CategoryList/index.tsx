@@ -10,6 +10,8 @@ interface CategoryListProps {
   data: WP_REST_API_Term[]
   onPress?: (id: number) => void
   category?: number | undefined
+  color?: 'dark' | 'light'
+  width?: number | string
 }
 
 interface ACF_Term extends WP_REST_API_Term {
@@ -22,13 +24,15 @@ const CategoryList: React.FC<CategoryListProps> = ({
   data,
   onPress,
   category,
+  width,
+  color,
 }) => {
   const acf: ACF_Term[] | undefined = data
   return (
     <List
       sx={{
         width: {
-          lg: 280,
+          lg: width,
           md: 200,
         },
       }}
@@ -48,7 +52,10 @@ const CategoryList: React.FC<CategoryListProps> = ({
                 color: (theme) => theme.palette.primary.main,
               },
               '&.Mui-selected .MuiListItemText-root span': {
-                color: (theme) => theme.palette.primary.main,
+                color: (theme) =>
+                  color === 'light'
+                    ? theme.palette.secondary.main
+                    : theme.palette.primary.main,
                 fontWeight: 600,
               },
               '&.Mui-selected': {
@@ -56,7 +63,14 @@ const CategoryList: React.FC<CategoryListProps> = ({
               },
             }}
             secondaryAction={
-              <Box sx={{ fontSize: 12, color: '#999' }}>{cat.count}</Box>
+              <Box
+                sx={{
+                  fontSize: 12,
+                  color: color === 'light' ? '#fff' : '#999',
+                }}
+              >
+                {cat.count}
+              </Box>
             }
           >
             <Box
@@ -83,7 +97,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
               sx={{
                 paddingLeft: '10px',
                 fontWeight: 500,
-                '& span': { color: '#000' },
+                '& span': { color: color === 'light' ? '#fff' : '#000' },
                 '&:hover': {
                   transition: 'translate 0.3s ease',
                   color: (theme) => theme.palette.primary.main,
@@ -99,6 +113,11 @@ const CategoryList: React.FC<CategoryListProps> = ({
         ))}
     </List>
   )
+}
+
+CategoryList.defaultProps = {
+  color: 'dark',
+  width: 280,
 }
 
 export default CategoryList
