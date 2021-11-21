@@ -21,7 +21,12 @@ export default createTheme({
     error: {
       main: '#F7F735',
     },
-    text: {},
+    text: {
+      primary: '#212121',
+    },
+    background: {
+      default: '#fafafa',
+    },
   },
   breakpoints: {
     values: breakpointValues,

@@ -1,16 +1,6 @@
-import { METADATA_ACTION_TYPE } from './types.d'
+import { createAction } from '@reduxjs/toolkit'
+import { METADATA_ACTION_TYPE } from './types'
 
-export const metaActions = {
-  clearGlobalMeta: (field?: string | null) => {
-    return (dispatch: any) => {
-      dispatch(clearGlobalMetaCreator(field))
-    }
-  },
-}
-
-export const clearGlobalMetaCreator = (field?: string | null) => {
-  return {
-    type: METADATA_ACTION_TYPE.ERROR_CLEAR,
-    payload: field,
-  }
-}
+export const clearMetaData = createAction<string | undefined>(
+  METADATA_ACTION_TYPE.CLEAR_METADATA
+)

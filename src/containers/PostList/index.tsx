@@ -17,16 +17,20 @@ const cache = new CellMeasurerCache({
   defaultHeight: 800,
 })
 
-const PostList: React.FC = () => {
-  const { getList, list, loadMore, paginationMeta } = usePosts()
+interface PostListProps {
+  category?: number | undefined
+}
+
+const PostList: React.FC<PostListProps> = ({ category }) => {
+  const { initList, list, loadMore, paginationMeta, meta } = usePosts(category)
 
   function isRowLoaded({ index }: any) {
     return !!list[index]
   }
 
   useEffect(() => {
-    getList({ per_page: 10, page: 1 })
-  }, [])
+    initList({ per_page: 10, page: 1, category: category })
+  }, [category])
 
   useLayoutEffect(() => {
     const updateSize = () => {
@@ -49,7 +53,19 @@ const PostList: React.FC = () => {
         rowIndex={index}
       >
         {({ registerChild, measure }) => (
-          <Box key={key} style={style} ref={registerChild} padding={2}>
+          <Box
+            key={key}
+            style={style}
+            ref={registerChild}
+            sx={{
+              padding: {
+                lg: '4px',
+                md: '4px,',
+                sm: '4px',
+                xs: '0',
+              },
+            }}
+          >
             <MediaCard
               onLoad={measure}
               key={post.id}
@@ -114,8 +130,21 @@ const PostList: React.FC = () => {
           )}
         </InfiniteLoader>
       )}
+      {meta.pending && list === undefined ? <Loader /> : null}
     </Box>
   )
 }
 
 export default PostList
+
+const Loader = () => (
+  <Box
+    width="100%"
+    height={500}
+    display="flex"
+    alignItems={'center'}
+    justifyContent={'center'}
+  >
+    <img src="/images/loader.gif" />
+  </Box>
+)

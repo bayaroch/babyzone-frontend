@@ -2,16 +2,19 @@ import { createMetaSelector } from '@store/metadata/selectors'
 import searchStore from '@store/posts'
 import { Meta } from '@store/metadata/actions/types'
 import { useDispatch, useSelector } from 'react-redux'
-import { PageMeta, PageMetaParams } from '@services/post.services'
+import { PageMeta } from '@services/post.services'
 import { WP_REST_API_Posts } from 'wp-types'
+import { PostParams } from '@store/posts/actions'
 
 const { selectors, actions } = searchStore
 const getPostsMeta = createMetaSelector(actions.getAllPosts)
 
-const usePosts = (): {
+const usePosts = (
+  category: number | undefined
+): {
   meta: Meta
   list: WP_REST_API_Posts
-  getList: (params: PageMetaParams) => void
+  initList: (params: PostParams) => void
   paginationMeta: PageMeta
   loadMore: (indexRange: any) => Promise<void>
 } => {
@@ -19,8 +22,9 @@ const usePosts = (): {
   const meta = useSelector(getPostsMeta)
   const list = useSelector(selectors.posts)
   const paginationMeta = useSelector(selectors.paginationMeta)
-  const getList = (params: PageMetaParams) =>
-    dispatch(actions.getAllPosts(params))
+  const initList = (params: PostParams) => {
+    dispatch(actions.initPosts({ ...params, category: category }))
+  }
 
   const loadMore = async ({
     stopIndex,
@@ -30,13 +34,17 @@ const usePosts = (): {
   }) => {
     if (stopIndex + 1 < paginationMeta.total_page) {
       dispatch(
-        actions.getAllPosts({ page: paginationMeta.page + 1, per_page: 10 })
+        actions.getAllPosts({
+          page: paginationMeta.page + 1,
+          per_page: 10,
+          category,
+        })
       )
     }
     return Promise.resolve()
   }
 
-  return { meta, list, getList, paginationMeta, loadMore }
+  return { meta, list, initList, paginationMeta, loadMore }
 }
 
 export default usePosts

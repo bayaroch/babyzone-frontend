@@ -51,117 +51,15 @@
 
 @import './content.scss';
 
-@keyframes float-down {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    -webkit-transform: translate3d(0, 10px, 0);
-    transform: translate3d(0, 10px, 0);
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
+body {
+  overscroll-behavior-y: contain;
+  padding-right: 0 !important;
+  overflow: overlay;
+  -webkit-overflow-scrolling: touch;
 }
 
-@keyframes float-up {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+@media (max-width: 720px) {
+  body {
+    overflow: unset;
   }
-
-  50% {
-    -webkit-transform: translate3d(0, -10px, 0);
-    transform: translate3d(0, -10px, 0);
-  }
-
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-@media (min-width: 1280px) {
-  .intro-section__content-part,
-  .intro-section__visual-part {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-@media (min-width: 960px) {
-  .intro-section__content-part {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 41.6666666667%;
-    flex: 0 0 41.6666666667%;
-    max-width: 41.6666666667%;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .intro-section__visual-part {
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 58.3333333333%;
-    flex: 0 0 58.3333333333%;
-    max-width: 58.3333333333%;
-  }
-  .intro-form {
-    max-width: 400px;
-  }
-}
-
-@media (min-width: 960px) {
-  .intro-section__holder {
-    padding-top: 9.9rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .intro-section__holder {
-    padding-top: 3.5rem;
-  }
-}
-
-.intro-section__content-part,
-.intro-section__visual-part {
-  position: relative;
-  width: 100%;
-  padding-right: 12px;
-  padding-left: 12px;
-  padding-bottom: 1rem;
-}
-.intro-section__holder {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-top: 5rem;
-}
-
-.slider-wrapper {
-  // background-color: red;
-  position: absolute;
-  top: 5%;
-  bottom: 12%;
-  left: 12%;
-  right: 12%;
-}
-.intro-form {
-  max-width: auto;
-}
-
-.intro-section__slider-holder {
-  position: relative;
-  max-width: 639px;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
 }

@@ -4,7 +4,11 @@ import useCategories from '@utils/hooks/useCategories'
 import CategoryList from '@components/CategoryList'
 import { useRouter } from 'next/router'
 
-const CategoryMenu: React.FC = () => {
+interface MenuProps {
+  category?: number | undefined
+}
+
+const CategoryMenu: React.FC<MenuProps> = ({ category }) => {
   const { getList, cats } = useCategories()
   const router = useRouter()
 
@@ -13,7 +17,7 @@ const CategoryMenu: React.FC = () => {
   }, [])
 
   const onPress = (id: number) => {
-    router.push(`c/${id}`)
+    router.push(`/c/${id.toString()}`, undefined, { shallow: false })
   }
 
   return (
@@ -24,14 +28,19 @@ const CategoryMenu: React.FC = () => {
         marginLeft: 30,
       }}
     >
-      <CategoryList data={cats} onPress={onPress} />
-      <Typography
-        align="center"
-        sx={{ fontSize: 11, color: '#aaa' }}
-        variant="body2"
-      >
-        © 2021 Babyzone.mn
-      </Typography>
+      {' '}
+      {cats ? (
+        <>
+          <CategoryList category={category} data={cats} onPress={onPress} />
+          <Typography
+            align="center"
+            sx={{ fontSize: 11, color: '#aaa' }}
+            variant="body2"
+          >
+            © 2021 Babyzone.mn
+          </Typography>
+        </>
+      ) : null}
     </Box>
   )
 }

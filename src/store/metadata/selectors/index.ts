@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect'
+import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from '@store/reducers'
 
 const getRoot = (state: RootState) => state.metadata

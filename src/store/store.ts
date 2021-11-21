@@ -14,7 +14,8 @@ import storage from './storage'
 
 export interface AppState {
   metadata: any
-  auth: any
+  posts: any
+  taxonomy: any
 }
 
 /**
@@ -56,3 +57,5 @@ const initStore: MakeStore<AppState> = () => {
 
 export const storeWrapper = createWrapper(initStore)
 export type StoreType = ReturnType<typeof initStore>
+export type RootState = ReturnType<StoreType['getState']>
+export type AppDispatch = StoreType['dispatch']

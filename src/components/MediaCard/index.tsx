@@ -32,7 +32,20 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
   const router = useRouter()
   const time = date ? CommonHelper.staticSmartTime(date) : ''
   return (
-    <Card sx={{ maxWidth: '100%' }}>
+    <Card
+      sx={{
+        maxWidth: '100%',
+        marginBottom: {
+          lg: '30px',
+          sx: '20px',
+          xs: '20px',
+        },
+        borderRadius: {
+          lg: '4px',
+          xs: '0',
+        },
+      }}
+    >
       <CardHeader
         avatar={
           <Stack direction="row" spacing={1}>
@@ -63,13 +76,13 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
         </Box>
       </Box>
       <CardContent>
-        <h3>{title}</h3>
+        <Typography variant="h2">{title}</Typography>
         <Typography variant="body2" component="div" color="text.secondary">
           {desc && <HTMLParser html={desc} />}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={() => id && router.push(`p/${id}`)}>
+        <Button onClick={() => id && router.push(`/p/${id}`)}>
           Дэлгэрэнгүй
         </Button>
       </CardActions>
@@ -78,7 +91,3 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
 }
 
 export default MediaCard
-
-MediaCard.defaultProps = {
-  media: 'https://mui.com/static/images/cards/paella.jpg',
-}

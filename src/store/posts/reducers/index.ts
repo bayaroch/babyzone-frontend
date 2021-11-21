@@ -22,7 +22,7 @@ export default createReducer(initialState, (builder) => {
       total_page: action.payload.headers,
     }
   })
-  builder.addCase(actions.clearMatchData, (state) => {
+  builder.addCase(actions.clearPostData, (state) => {
     state.postList = undefined
     state.postListMeta = undefined
   })
