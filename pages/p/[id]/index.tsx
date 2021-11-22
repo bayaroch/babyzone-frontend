@@ -8,13 +8,15 @@ import PageWithLayoutType from '@constants/page'
 import _ from 'lodash'
 import Content from '@components/Content'
 import { Container, Grid, Typography } from '@mui/material'
-import { Author, Share } from '@components/PostElements/index'
+import { Author, Share, Slider } from '@components/PostElements/index'
 import { CommonHelper } from '@utils/helpers/CommonHelper'
 
 const Detail: PageWithLayoutType = ({ posts }: any) => {
   const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
 
   const time = article.date ? CommonHelper.staticSmartTime(article.date) : ''
+
+  const sliderImages = _.get(article, 'acf.featured_slide', [])
 
   return (
     <MainLayout>
@@ -47,16 +49,23 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
           {time}
         </Typography>
 
-        <img
-          style={{ width: '100%', height: 'auto' }}
-          src={
-            _.get(
-              article,
-              "_embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url",
-              ''
-            ) as string
-          }
-        />
+        {_.isArray(sliderImages) && !_.isEmpty(sliderImages) ? (
+          <Slider
+            sx={{ paddingBottom: '70%', position: 'relative' }}
+            images={sliderImages}
+          />
+        ) : (
+          <img
+            style={{ width: '100%', height: 'auto' }}
+            src={
+              _.get(
+                article,
+                "_embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url",
+                ''
+              ) as string
+            }
+          />
+        )}
         <Grid container spacing={1}>
           <Grid xs={12} md={2} item>
             <Author
