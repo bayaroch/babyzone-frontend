@@ -14,7 +14,7 @@ export const getAllPosts = createAsyncThunk<
   try {
     const res = await postServices.getAllPosts(
       params,
-      `id,content,date,slug,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded${
+      `id,content,date,acf,slug,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded${
         params.category ? `&categories=${params.category}` : ''
       }`
     )

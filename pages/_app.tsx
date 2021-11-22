@@ -56,11 +56,16 @@ const CustomApp = ({ Component, pageProps }: Props) => {
             _.get(data, 'excerpt.rendered', undefined) || 'babyzone.mn'
           }
           image={
-            _.get(
+            (_.get(
               data,
-              "_embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url",
+              "_embedded['wp:featuredmedia'][0].media_details.sizes.og-image.source_url",
               ''
-            ) as string
+            ) as string) ||
+            (_.get(
+              data,
+              "_embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url",
+              ''
+            ) as string)
           }
         />
         <PersistGate
