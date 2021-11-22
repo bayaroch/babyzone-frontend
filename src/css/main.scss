@@ -50,7 +50,7 @@
 }
 
 @import './content.scss';
-
+@import './swiper.scss';
 body {
   overscroll-behavior-y: contain;
   padding-right: 0 !important;
@@ -70,5 +70,5 @@ $wewak: '#f3a8bb';
 $linen: '#fcf1f0';
 
 .swiper-pagination-bullet-active {
-  background: $colorprimary;
+  background: $primary;
 }

@@ -17,6 +17,7 @@ import { StylesProvider } from '@mui/styles'
 import Seo from '@components/Seo'
 import _ from 'lodash'
 import { Box } from '@mui/material'
+
 moment.locale('mn')
 
 export const cache = createCache({ key: 'css', prepend: true })

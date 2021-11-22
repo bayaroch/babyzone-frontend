@@ -60,6 +60,7 @@ const Slider: React.FC<SliderProps> = ({ images, ...rest }) => {
                     object-fit: cover;
                     object-position: top center;
                   `}
+                  alt={img.name}
                   src={img.sizes.large}
                 />
               </SwiperSlide>
