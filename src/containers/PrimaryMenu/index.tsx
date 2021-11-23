@@ -18,10 +18,10 @@ const CategoryList: React.FC<CategoryListProps> = ({ onPress, asPath }) => {
       {primarymenu &&
         primarymenu.map((item: MenuItemType, index) => (
           <ListItem
+            component="li"
             key={index}
             selected={asPath === item.route}
             onClick={() => onPress && onPress(item.route)}
-            component="div"
             disablePadding
             sx={{
               padding: '5px 0',
