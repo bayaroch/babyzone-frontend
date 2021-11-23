@@ -74,7 +74,10 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
             <Grid container spacing={1}>
               <Grid xs={12} md={2} item>
                 <Author
-                  padding={2}
+                  sx={{
+                    padding: { lg: 2, md: 2, sm: 2 },
+                    paddingBottom: { sm: 0 },
+                  }}
                   author={{
                     name: _.get(
                       article,
@@ -98,6 +101,9 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
                       xs: 2,
                       md: 1,
                       lg: 4,
+                    },
+                    paddingTop: {
+                      sm: 0,
                     },
                   }}
                 />

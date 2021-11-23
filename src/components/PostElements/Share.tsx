@@ -16,7 +16,12 @@ const Share: React.FC<BoxProps> = ({ ...rest }) => {
         justifyContent={'space-between'}
         width={70}
         display={'flex'}
-        marginTop={3}
+        sx={{
+          marginTop: {
+            lg: 4,
+            sm: 0,
+          },
+        }}
       >
         <FacebookShareButton url={window && window.location.href}>
           <FacebookIcon size={32} />

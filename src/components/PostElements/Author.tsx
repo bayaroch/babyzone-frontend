@@ -15,7 +15,7 @@ const Author: React.FC<AuthorProps> = ({ author, ...rest }) => {
     <Box className="author" {...rest}>
       <Box
         flexDirection={'row'}
-        marginTop={2}
+        sx={{ mt: { lg: 2, md: 2, sm: 0, xs: 0 } }}
         display="flex"
         justifyContent={'flex-start'}
       >
