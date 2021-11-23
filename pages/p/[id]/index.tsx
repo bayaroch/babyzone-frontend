@@ -10,6 +10,7 @@ import Content from '@components/Content'
 import { Box, Container, Grid, Typography } from '@mui/material'
 import { Author, Share, Slider } from '@components/PostElements/index'
 import { CommonHelper } from '@utils/helpers/CommonHelper'
+import { StepItemType } from '@components/PostElements/Steps'
 
 const Detail: PageWithLayoutType = ({ posts }: any) => {
   const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
@@ -18,6 +19,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
     article && article.date ? CommonHelper.staticSmartTime(article.date) : ''
 
   const sliderImages = _.get(article, 'acf.featured_slide', [])
+  const steps: StepItemType[] = _.get(article, 'acf.steps', []) as []
 
   return (
     <MainLayout>
@@ -89,6 +91,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
               </Grid>
               <Grid xs={12} md={8} item>
                 <Content
+                  steps={steps}
                   content={article ? article.content.rendered : ''}
                   sx={{
                     padding: {

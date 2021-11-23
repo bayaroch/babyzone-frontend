@@ -12,7 +12,6 @@ const Category: PageWithLayoutType = () => {
   const router = useRouter()
   const { id } = router.query
   // eslint-disable-next-line no-console
-  console.log(id)
   return (
     <MainLayout>
       <Container
