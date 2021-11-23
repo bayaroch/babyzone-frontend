@@ -112,7 +112,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
               />
             </ListItem>
           ))}
-        {category ? (
+        {category && color === 'dark' ? (
           <Box
             display="flex"
             width="100%"
@@ -133,7 +133,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
             <Box>
               <Typography
                 variant="h3"
-                color={color === 'light' ? '#fff' : '#000'}
+                color={'#000'}
                 sx={{ marginBottom: 0.5 }}
               >
                 {_.get(_.find(data, { id: category }), 'name', '')}
@@ -141,7 +141,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
               <Typography
                 variant="body2"
                 sx={{ fontSize: 12, paddingRight: 1 }}
-                color={color === 'light' ? '#fff' : '#000'}
+                color={'#000'}
               >
                 {_.get(_.find(data, { id: category }), 'description', '')}
               </Typography>

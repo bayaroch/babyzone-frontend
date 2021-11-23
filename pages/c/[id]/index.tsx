@@ -15,7 +15,15 @@ const Category: PageWithLayoutType = () => {
   console.log(id)
   return (
     <MainLayout>
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{
+          padding: {
+            xs: '0',
+            sm: '0',
+          },
+        }}
+      >
         <Grid container columnSpacing={{ xs: 0 }}>
           <Grid item xs={12} md={8}>
             {id && <PostList category={Number(id)} />}
