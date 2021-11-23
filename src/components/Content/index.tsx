@@ -9,7 +9,7 @@ import _ from 'lodash'
 
 interface HtmlParserProps extends BoxProps {
   content: string
-  steps: StepItemType[]
+  steps?: StepItemType[]
 }
 
 const Content: React.FC<HtmlParserProps> = ({ steps, content, ...rest }) => {

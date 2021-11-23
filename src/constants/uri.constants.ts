@@ -6,4 +6,5 @@ export const URI = {
   ALL_POSTS: API_ROOT + 'posts',
   POST: API_ROOT + 'post',
   CATEGORIES: API_ROOT + 'categories',
+  PAGE: API_ROOT + 'pages',
 }
