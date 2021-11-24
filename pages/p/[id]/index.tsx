@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /*
  * Detail Page
  */
 import { URI } from '@constants/uri.constants'
 import MainLayout from '@components/Layouts/MainLayout'
-import PageWithLayoutType from '@constants/page'
 import _ from 'lodash'
 import Content from '@components/Content'
 import { Container, Grid, Typography } from '@mui/material'
@@ -18,12 +18,17 @@ import Loader from '@components/Loader'
 import useTags from '@utils/hooks/useTags'
 import useDetail from '@utils/hooks/useDetail'
 
-const Detail: PageWithLayoutType = () => {
+const Detail = ({ error }: { error: boolean }) => {
   const router = useRouter()
   const { id } = router.query
   const { list, meta, relatedList } = useRelated()
   const { tags, tagList } = useTags()
   const { getDetail, data, metaDetail } = useDetail()
+  useEffect(() => {
+    if (error) {
+      router.push('/404')
+    }
+  }, [error])
 
   useEffect(() => {
     getDetail(Number(id))
@@ -176,6 +181,7 @@ const Detail: PageWithLayoutType = () => {
 export default Detail
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function getServerSideProps({
   query: { id },
 }: {
@@ -183,9 +189,17 @@ export async function getServerSideProps({
 }) {
   const res = await fetch(`${URI.SEO}/${id}`)
   const data = await res.json()
+  if (data?.data?.status === 404) {
+    return {
+      props: {
+        error: true,
+      },
+    }
+  }
   return {
     props: {
       seo: data,
+      error: false,
     },
   }
 }
