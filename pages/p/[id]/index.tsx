@@ -19,7 +19,11 @@ import useTags from '@utils/hooks/useTags'
 import useDetail from '@utils/hooks/useDetail'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function getServerSideProps({ query: { id } }) {
+export async function getServerSideProps({
+  query: { id },
+}: {
+  query: { id: string }
+}) {
   try {
     const res = await fetch(`${URI.SEO}/${id}`)
     const data = await JSON.stringify(res)
