@@ -171,7 +171,9 @@ export default Detail
 export async function getServerSideProps(context: any) {
   const { id } = context.query
   try {
-    const res = await fetch(`${URI.ALL_POSTS}?include[]=${id}&_embed`)
+    const res = await fetch(
+      `${URI.ALL_POSTS}?include[]=${id}&_fields=id,content,date,acf,slug,tags,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded`
+    )
     return {
       props: {
         posts: await res.json(),
