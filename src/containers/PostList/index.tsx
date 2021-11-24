@@ -20,17 +20,21 @@ const cache = new CellMeasurerCache({
 
 interface PostListProps {
   category?: number | undefined
+  tag?: number | undefined
 }
 
-const PostList: React.FC<PostListProps> = ({ category }) => {
-  const { initList, list, loadMore, paginationMeta, meta } = usePosts(category)
+const PostList: React.FC<PostListProps> = ({ category, tag }) => {
+  const { initList, list, loadMore, paginationMeta, meta } = usePosts(
+    category,
+    tag
+  )
 
   function isRowLoaded({ index }: any) {
     return !!list[index]
   }
 
   useEffect(() => {
-    initList({ per_page: 10, page: 1, category: category })
+    initList({ per_page: 10, page: 1, category: category, tag: tag })
   }, [category])
 
   useLayoutEffect(() => {

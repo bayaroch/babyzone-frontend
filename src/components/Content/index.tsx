@@ -3,16 +3,23 @@ import HTMLParser from '@components/HtmlParser'
 import { BoxProps } from '@mui/material'
 import YouTube from '@components/Youtube'
 import { HTMLReactParserOptions } from 'html-react-parser'
-import { Steps } from '@components/PostElements'
+import { Steps, TagList } from '@components/PostElements'
 import { StepItemType } from '@components/PostElements/Steps'
 import _ from 'lodash'
+import { WP_REST_API_Tags } from 'wp-types'
 
 interface HtmlParserProps extends BoxProps {
   content: string
   steps?: StepItemType[]
+  tags?: WP_REST_API_Tags | undefined
 }
 
-const Content: React.FC<HtmlParserProps> = ({ steps, content, ...rest }) => {
+const Content: React.FC<HtmlParserProps> = ({
+  steps,
+  content,
+  tags,
+  ...rest
+}) => {
   const options: HTMLReactParserOptions = {
     replace: (domNode: any) => {
       if (domNode.name !== 'iframe') {
@@ -31,6 +38,12 @@ const Content: React.FC<HtmlParserProps> = ({ steps, content, ...rest }) => {
         <Steps steps={steps as []} sx={{ marginTop: 1 }} />
       ) : (
         ''
+      )}
+      {tags && (
+        <TagList
+          sx={{ fontWeight: 600, textTransform: 'lowercase' }}
+          data={tags}
+        />
       )}
     </Box>
   )

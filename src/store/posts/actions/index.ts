@@ -6,6 +6,7 @@ import { Related_Post } from '@components/PostElements/RelatedPosts'
 
 export interface PostParams extends PageMetaParams {
   category: number | undefined
+  tag: number | undefined
 }
 
 export const getAllPosts = createAsyncThunk<
@@ -15,9 +16,9 @@ export const getAllPosts = createAsyncThunk<
   try {
     const res = await postServices.getAllPosts(
       params,
-      `id,content,date,acf,slug,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded${
+      `id,content,date,acf,slug,tags,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded${
         params.category ? `&categories=${params.category}` : ''
-      }`
+      }${params.tag ? `&tags=${params.tag}` : ''}`
     )
     return res
   } catch (error) {

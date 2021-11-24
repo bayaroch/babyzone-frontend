@@ -16,15 +16,18 @@ import useRelated from '@utils/hooks/useRelated'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Loader from '@components/Loader'
+import useTags from '@utils/hooks/useTags'
 
 const Detail: PageWithLayoutType = ({ posts }: any) => {
   const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
   const router = useRouter()
   const { id } = router.query
   const { list, meta, relatedList } = useRelated()
+  const { tags, tagList } = useTags()
 
   useEffect(() => {
     relatedList(Number(id))
+    tagList(Number(id))
   }, [id])
 
   const time =
@@ -108,6 +111,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
                 <Content
                   steps={steps}
                   content={article ? article.content.rendered : ''}
+                  tags={tags}
                   sx={{
                     padding: {
                       xs: 2,
