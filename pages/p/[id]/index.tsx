@@ -2,7 +2,7 @@
 /*
  * Detail Page
  */
-// import { URI } from '@constants/uri.constants'
+import { URI } from '@constants/uri.constants'
 import MainLayout from '@components/Layouts/MainLayout'
 import _ from 'lodash'
 import Content from '@components/Content'
@@ -182,24 +182,15 @@ export default Detail
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-// export async function getServerSideProps({
-//   query: { id },
-// }: {
-//   query: { id: string }
-// }) {
-//   const res = await fetch(`${URI.SEO}/${id}`)
-//   const data = await res.json()
-//   if (data?.data?.status === 404) {
-//     return {
-//       props: {
-//         error: true,
-//       },
-//     }
-//   }
-//   return {
-//     props: {
-//       seo: data,
-//       error: false,
-//     },
-//   }
-// }
+export async function getServerSideProps({
+  query: { id },
+}: {
+  query: { id: string }
+}) {
+  const res = await fetch(`${URI.SEO}/${id}`)
+  return {
+    props: {
+      seo: await res.json(),
+    },
+  }
+}
