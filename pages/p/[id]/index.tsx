@@ -18,25 +18,6 @@ import Loader from '@components/Loader'
 import useTags from '@utils/hooks/useTags'
 import useDetail from '@utils/hooks/useDetail'
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function getServerSideProps({
-  query: { id },
-}: {
-  query: { id: string }
-}) {
-  try {
-    const res = await fetch(`${URI.SEO}/${id}`)
-    const data = await res.json()
-    return {
-      props: {
-        seo: data,
-      },
-    }
-  } catch (error) {
-    return { props: {} }
-  }
-}
-
 const Detail: PageWithLayoutType = () => {
   const router = useRouter()
   const { id } = router.query
@@ -195,3 +176,16 @@ const Detail: PageWithLayoutType = () => {
 export default Detail
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function getServerSideProps({
+  query: { id },
+}: {
+  query: { id: string }
+}) {
+  const res = await fetch(`${URI.SEO}/${id}`)
+  const data = await res.json()
+  return {
+    props: {
+      seo: data,
+    },
+  }
+}
