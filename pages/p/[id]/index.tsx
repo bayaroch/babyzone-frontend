@@ -26,7 +26,7 @@ export async function getServerSideProps({
 }) {
   try {
     const res = await fetch(`${URI.SEO}/${id}`)
-    const data = await JSON.stringify(res)
+    const data = await res.json()
     return {
       props: {
         seo: data,
