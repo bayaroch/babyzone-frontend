@@ -27,13 +27,8 @@ const usePosts = (
     dispatch(actions.initPosts({ ...params, category: category, tag: tag }))
   }
 
-  const loadMore = async ({
-    stopIndex,
-  }: {
-    startIndex: number
-    stopIndex: number
-  }) => {
-    if (stopIndex + 1 < paginationMeta.total_page) {
+  const loadMore = async ({}: { startIndex: number; stopIndex: number }) => {
+    if (list.length < paginationMeta.total_page) {
       dispatch(
         actions.getAllPosts({
           page: paginationMeta.page + 1,
