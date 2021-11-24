@@ -14,3 +14,5 @@ export const paginationMeta = createSelector(
   getState,
   (state) => state.postListMeta
 )
+
+export const detail = createSelector(getState, (state) => state.detail)

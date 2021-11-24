@@ -1,7 +1,7 @@
 import { postServices, PageMetaParams } from '@services/post.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
-import { POST_ACTION_TYPE, CLEAR_POST_DATA } from './types'
-import type { WP_REST_API_Posts } from 'wp-types'
+import { POST_ACTION_TYPE, CLEAR_POST_DATA, CLEAR_DETAIL_DATA } from './types'
+import type { WP_REST_API_Posts, WP_REST_API_Post } from 'wp-types'
 import { Related_Post } from '@components/PostElements/RelatedPosts'
 
 export interface PostParams extends PageMetaParams {
@@ -53,6 +53,30 @@ export const getRelatedPosts = createAsyncThunk<Related_Post[], number>(
   }
 )
 
+export const detail = createAsyncThunk<WP_REST_API_Post, number>(
+  POST_ACTION_TYPE.POST_DETAIL,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await postServices.postDetail(params)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const initDetail = (params: number) => {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  return (dispatch: any) => {
+    Promise.resolve(dispatch(clearDetailData())).then(() =>
+      dispatch(detail(params))
+    )
+  }
+}
+
 export const initRelatedPosts = (params: number) => {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   return (dispatch: any) => {
@@ -63,3 +87,4 @@ export const initRelatedPosts = (params: number) => {
 }
 
 export const clearPostData = createAction(CLEAR_POST_DATA)
+export const clearDetailData = createAction(CLEAR_DETAIL_DATA)

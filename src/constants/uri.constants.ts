@@ -9,5 +9,6 @@ export const URI = {
   CATEGORIES: API_ROOT + 'categories',
   PAGE: API_ROOT + 'pages',
   RELATED_POSTS: API_CUSTOM_ROOT + 'post/related/:id',
+  SEO: API_CUSTOM_ROOT + 'post/seo',
   TAGS: API_ROOT + 'tags',
 }

@@ -1,13 +1,12 @@
 /*
  * Detail Page
  */
-import { WP_REST_API_Post } from 'wp-types'
 import { URI } from '@constants/uri.constants'
 import MainLayout from '@components/Layouts/MainLayout'
 import PageWithLayoutType from '@constants/page'
 import _ from 'lodash'
 import Content from '@components/Content'
-import { Box, Container, Grid, Typography } from '@mui/material'
+import { Container, Grid, Typography } from '@mui/material'
 import { Author, Share, Slider } from '@components/PostElements/index'
 import { CommonHelper } from '@utils/helpers/CommonHelper'
 import { StepItemType } from '@components/PostElements/Steps'
@@ -17,21 +16,25 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Loader from '@components/Loader'
 import useTags from '@utils/hooks/useTags'
+import useDetail from '@utils/hooks/useDetail'
 
-const Detail: PageWithLayoutType = ({ posts }: any) => {
-  const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
+const Detail: PageWithLayoutType = () => {
   const router = useRouter()
   const { id } = router.query
   const { list, meta, relatedList } = useRelated()
   const { tags, tagList } = useTags()
+  const { getDetail, data, metaDetail } = useDetail()
 
   useEffect(() => {
+    getDetail(Number(id))
     relatedList(Number(id))
     tagList(Number(id))
   }, [id])
 
+  const article = _.isArray(data) ? data[0] : undefined
+
   const time =
-    article && article.date ? CommonHelper.staticSmartTime(article.date) : ''
+    article && article.date ? CommonHelper.staticSmartTime(data.date) : ''
 
   const sliderImages = _.get(article, 'acf.featured_slide', [])
   const steps: StepItemType[] = _.get(article, 'acf.steps', []) as []
@@ -47,7 +50,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
           },
         }}
       >
-        {article ? (
+        {article && !metaDetail.pending && metaDetail.loaded ? (
           <>
             <Typography
               mb={1}
@@ -110,7 +113,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
               <Grid xs={12} md={8} item>
                 <Content
                   steps={steps}
-                  content={article ? article.content.rendered : ''}
+                  content={_.get(article, 'content.rendered', '')}
                   tags={tags}
                   sx={{
                     padding: {
@@ -154,11 +157,16 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
             </Grid>
           </>
         ) : (
-          <Box>
-            <Typography variant="h2" align="center">
-              Мэдээлэл алга
-            </Typography>
-          </Box>
+          <Loader
+            width={'100%'}
+            height={200}
+            display={'flex'}
+            alignItems={'center'}
+            justifyContent={'center'}
+          />
+        )}
+        {metaDetail.loaded && metaDetail.error && (
+          <Typography>Мэдээлэл алга</Typography>
         )}
       </Container>
     </MainLayout>
@@ -171,12 +179,10 @@ export default Detail
 export async function getServerSideProps(context: any) {
   const { id } = context.query
   try {
-    const res = await fetch(
-      `${URI.ALL_POSTS}?include[]=${id}&_fields=id,content,date,acf,slug,tags,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded`
-    )
+    const res = await fetch(`${URI.SEO}/${id}`)
     return {
       props: {
-        posts: await res.json(),
+        seo: await res.json(),
       },
     }
   } catch (error) {
