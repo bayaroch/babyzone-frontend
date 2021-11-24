@@ -2,6 +2,7 @@ import { postServices, PageMetaParams } from '@services/post.services'
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { POST_ACTION_TYPE, CLEAR_POST_DATA } from './types'
 import type { WP_REST_API_Posts } from 'wp-types'
+import { Related_Post } from '@components/PostElements/RelatedPosts'
 
 export interface PostParams extends PageMetaParams {
   category: number | undefined
@@ -32,6 +33,30 @@ export const initPosts = (params: PostParams) => {
   return (dispatch: any) => {
     Promise.resolve(dispatch(clearPostData())).then(() =>
       dispatch(getAllPosts(params))
+    )
+  }
+}
+
+export const getRelatedPosts = createAsyncThunk<Related_Post[], number>(
+  POST_ACTION_TYPE.RELATED_POSTS,
+  async (params, { rejectWithValue }) => {
+    try {
+      const res = await postServices.relatedPosts(params)
+      return res
+    } catch (error) {
+      if (!error) {
+        throw error
+      }
+      return rejectWithValue(error)
+    }
+  }
+)
+
+export const initRelatedPosts = (params: number) => {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  return (dispatch: any) => {
+    Promise.resolve(dispatch(clearPostData())).then(() =>
+      dispatch(getRelatedPosts(params))
     )
   }
 }

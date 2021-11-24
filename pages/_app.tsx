@@ -16,7 +16,7 @@ import '@css/main.scss'
 import { StylesProvider } from '@mui/styles'
 import Seo from '@components/Seo'
 import _ from 'lodash'
-import { Box } from '@mui/material'
+import Loader from '@components/Loader'
 
 moment.locale('mn')
 
@@ -65,21 +65,21 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               data,
               "_embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url",
               ''
-            ) as string)
+            ) as string) ||
+            '/images/default.png'
           }
         />
         <PersistGate
           persistor={persistStore(store)}
           loading={
-            <Box
+            <Loader
               width="100%"
               height={500}
               display="flex"
               justifyContent={'center'}
               alignItems="center"
-            >
-              <img src={'/images/loader-white.gif'} />
-            </Box>
+              color="white"
+            />
           }
         >
           <ThemeProvider theme={theme}>

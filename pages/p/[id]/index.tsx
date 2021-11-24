@@ -11,9 +11,21 @@ import { Box, Container, Grid, Typography } from '@mui/material'
 import { Author, Share, Slider } from '@components/PostElements/index'
 import { CommonHelper } from '@utils/helpers/CommonHelper'
 import { StepItemType } from '@components/PostElements/Steps'
+import RelatedPosts from '@components/PostElements/RelatedPosts'
+import useRelated from '@utils/hooks/useRelated'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Loader from '@components/Loader'
 
 const Detail: PageWithLayoutType = ({ posts }: any) => {
   const article: WP_REST_API_Post = _.isArray(posts) ? posts[0] : undefined
+  const router = useRouter()
+  const { id } = router.query
+  const { list, meta, relatedList } = useRelated()
+
+  useEffect(() => {
+    relatedList(Number(id))
+  }, [id])
 
   const time =
     article && article.date ? CommonHelper.staticSmartTime(article.date) : ''
@@ -75,7 +87,7 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
               <Grid xs={12} md={2} item>
                 <Author
                   sx={{
-                    padding: { lg: 2, md: 2, sm: 2 },
+                    padding: { lg: 2, md: 2, sm: 2, xs: 2 },
                     paddingBottom: { sm: 0 },
                   }}
                   author={{
@@ -118,6 +130,23 @@ const Detail: PageWithLayoutType = ({ posts }: any) => {
                   }}
                 />
               </Grid>
+            </Grid>
+            <Grid container spacing={1}>
+              <Grid xs={12} md={2} item></Grid>
+              <Grid xs={12} md={8} item>
+                {!meta.pending && meta.loaded && list !== undefined ? (
+                  <RelatedPosts data={list} />
+                ) : (
+                  <Loader
+                    width={'100%'}
+                    height={200}
+                    display={'flex'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                  />
+                )}
+              </Grid>
+              <Grid xs={12} md={2} item></Grid>
             </Grid>
           </>
         ) : (

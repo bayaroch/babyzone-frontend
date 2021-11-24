@@ -11,7 +11,7 @@ import {
   CellMeasurerCache,
   InfiniteLoader,
 } from 'react-virtualized'
-import { useRouter } from 'next/router'
+import Loader from '@components/Loader'
 
 const cache = new CellMeasurerCache({
   fixedWidth: true,
@@ -24,14 +24,9 @@ interface PostListProps {
 
 const PostList: React.FC<PostListProps> = ({ category }) => {
   const { initList, list, loadMore, paginationMeta, meta } = usePosts(category)
-  const router = useRouter()
 
   function isRowLoaded({ index }: any) {
     return !!list[index]
-  }
-
-  const handlePress = (id: number) => {
-    if (id) router.push(`/p/${id}`)
   }
 
   useEffect(() => {
@@ -74,7 +69,6 @@ const PostList: React.FC<PostListProps> = ({ category }) => {
             }}
           >
             <MediaCard
-              onPress={handlePress}
               onLoad={measure}
               key={post.id}
               title={post.title.rendered}
@@ -143,21 +137,17 @@ const PostList: React.FC<PostListProps> = ({ category }) => {
           )}
         </InfiniteLoader>
       )}
-      {meta.pending && list === undefined ? <Loader /> : null}
+      {meta.pending && list === undefined ? (
+        <Loader
+          width="100%"
+          height={500}
+          display="flex"
+          alignItems={'center'}
+          justifyContent={'center'}
+        />
+      ) : null}
     </Box>
   )
 }
 
 export default PostList
-
-const Loader = () => (
-  <Box
-    width="100%"
-    height={500}
-    display="flex"
-    alignItems={'center'}
-    justifyContent={'center'}
-  >
-    <img src="/images/loader.gif" />
-  </Box>
-)

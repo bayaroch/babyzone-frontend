@@ -1,6 +1,7 @@
 import api from './api'
 import { URI } from '@constants/uri.constants'
 import { WP_REST_API_Posts } from 'wp-types'
+import { Related_Post } from '@components/PostElements/RelatedPosts'
 
 export type PageMeta = {
   page: number
@@ -25,5 +26,12 @@ export const postServices = {
     )
 
     return { data, headers: headers['x-wp-total'] }
+  },
+
+  relatedPosts: async (post_id: number): Promise<Related_Post[]> => {
+    const { data } = await api.get<Related_Post[]>(
+      URI.RELATED_POSTS.replace(/:id/gi, post_id.toString())
+    )
+    return data
   },
 }

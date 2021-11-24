@@ -12,6 +12,7 @@ import Stack from '@mui/material/Stack'
 import CardActions from '@mui/material/CardActions'
 import { Box, Button } from '@mui/material'
 import _ from 'lodash'
+import Link from 'next/link'
 
 interface MediaCardProps {
   title: string
@@ -25,11 +26,10 @@ interface MediaCardProps {
   id: number
   term?: string
   onLoad?: () => void
-  onPress?: (id: number) => void
 }
 
 const MediaCard: React.FC<MediaCardProps> = (props) => {
-  const { title, date, desc, media, id, term, onPress } = props
+  const { title, date, desc, media, id, term } = props
   const time = date ? CommonHelper.staticSmartTime(date) : ''
 
   return (
@@ -60,26 +60,23 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
         }
         subheader={time}
       />
-      <Box
-        position={'relative'}
-        sx={{ cursor: 'pointer' }}
-        onClick={() => onPress && onPress(id)}
-        pt="100%"
-      >
-        <Box
-          height={'100%'}
-          width={'100%'}
-          position="absolute"
-          top={0}
-          bottom={0}
-          left={0}
-          right={0}
-        >
-          <img
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            src={media}
-          />
-        </Box>
+      <Box position={'relative'} sx={{ cursor: 'pointer' }} pt="100%">
+        <Link href={`/p/${id}`}>
+          <Box
+            height={'100%'}
+            width={'100%'}
+            position="absolute"
+            top={0}
+            bottom={0}
+            left={0}
+            right={0}
+          >
+            <img
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              src={media}
+            />
+          </Box>
+        </Link>
       </Box>
       <CardContent>
         <Typography variant="h2">{title}</Typography>
@@ -92,13 +89,11 @@ const MediaCard: React.FC<MediaCardProps> = (props) => {
         </Typography>
       </CardContent>
       <CardActions sx={{ borderTop: '1px solid #eee' }}>
-        <Button
-          onClick={() => onPress && onPress(id)}
-          size="small"
-          color="primary"
-        >
-          Дэлгэрэнгүй
-        </Button>
+        <Link href={`/p/${id}`}>
+          <Button size="small" color="primary">
+            Дэлгэрэнгүй
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   )

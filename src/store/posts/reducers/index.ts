@@ -3,14 +3,17 @@ import * as actions from '../actions'
 import { PageMeta } from '@services/post.services'
 import { WP_REST_API_Posts } from 'wp-types'
 import _ from 'lodash'
+import { Related_Post } from '@components/PostElements/RelatedPosts'
 
 export type PostState = {
   postList: WP_REST_API_Posts | undefined
   postListMeta?: PageMeta | undefined
+  relatedPost: Related_Post[] | undefined
 }
 
 const initialState: PostState = {
   postList: undefined,
+  relatedPost: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -25,5 +28,8 @@ export default createReducer(initialState, (builder) => {
   builder.addCase(actions.clearPostData, (state) => {
     state.postList = undefined
     state.postListMeta = undefined
+  })
+  builder.addCase(actions.getRelatedPosts.fulfilled, (state, action) => {
+    state.relatedPost = action.payload
   })
 })
