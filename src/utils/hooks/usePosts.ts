@@ -8,23 +8,34 @@ import { PostParams } from '@store/posts/actions'
 
 const { selectors, actions } = searchStore
 const getPostsMeta = createMetaSelector(actions.getAllPosts)
-
+const getPostsMetaByCategory = createMetaSelector(actions.getAllPostsbyCategory)
 const usePosts = (
   category: number | undefined,
   tag?: number | undefined
 ): {
   meta: Meta
+  metaCat: Meta
   list: WP_REST_API_Posts
   initList: (params: PostParams) => void
   paginationMeta: PageMeta
   loadMore: (indexRange: any) => Promise<void>
+  initCatList: (params: PostParams) => void
 } => {
   const dispatch = useDispatch()
   const meta = useSelector(getPostsMeta)
+  const metaCat = useSelector(getPostsMetaByCategory)
   const list = useSelector(selectors.posts)
   const paginationMeta = useSelector(selectors.paginationMeta)
   const initList = (params: PostParams) => {
     dispatch(actions.initPosts({ ...params, category: category, tag: tag }))
+  }
+
+  const initCatList = (params: PostParams) => {
+    if (category) {
+      dispatch(
+        actions.initPostsbyCategory({ ...params, category: category, tag: tag })
+      )
+    }
   }
 
   const loadMore = async ({}: { startIndex: number; stopIndex: number }) => {
@@ -41,7 +52,15 @@ const usePosts = (
     return Promise.resolve()
   }
 
-  return { meta, list, initList, paginationMeta, loadMore }
+  return {
+    meta,
+    list,
+    initList,
+    paginationMeta,
+    loadMore,
+    initCatList,
+    metaCat,
+  }
 }
 
 export default usePosts

@@ -10,12 +10,14 @@ export type PostState = {
   postListMeta?: PageMeta | undefined
   relatedPost: Related_Post[] | undefined
   detail: WP_REST_API_Post | undefined
+  currentCategory: number | undefined
 }
 
 const initialState: PostState = {
   postList: undefined,
   relatedPost: undefined,
   detail: undefined,
+  currentCategory: undefined,
 }
 
 export default createReducer(initialState, (builder) => {
@@ -39,5 +41,20 @@ export default createReducer(initialState, (builder) => {
   })
   builder.addCase(actions.getRelatedPosts.fulfilled, (state, action) => {
     state.relatedPost = action.payload
+  })
+  builder.addCase(actions.saveCategory, (state, action) => {
+    state.currentCategory = action.payload
+    state.postList = undefined
+    state.postListMeta = undefined
+  })
+  builder.addCase(actions.getAllPostsbyCategory.fulfilled, (state, action) => {
+    if (state.currentCategory === action.meta.arg.category) {
+      state.postList = _.unionBy(state.postList, action.payload.data, 'id')
+    }
+    state.postListMeta = {
+      page: action.meta.arg.page,
+      per_page: action.meta.arg.per_page,
+      total_page: action.payload.headers,
+    }
   })
 })
