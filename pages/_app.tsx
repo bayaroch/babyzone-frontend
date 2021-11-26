@@ -52,7 +52,10 @@ const CustomApp = ({ Component, pageProps }: Props) => {
       <CacheProvider value={cache}>
         <Seo
           title={_.get(data, 'og_title', undefined) || 'babyzone.mn'}
-          description={_.get(data, 'og_content', undefined) || 'babyzone.mn'}
+          description={
+            _.get(data, 'og_content', undefined) ||
+            'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
+          }
           image={
             (_.get(data, 'og_image', '') as string) || '/images/default.png'
           }
