@@ -1,0 +1,168 @@
+/* gender html */
+.gender-table {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+td {
+  border-bottom: 1px dotted #d8c9b3;
+  border-right: 1px dotted #d8c9b3;
+  color: #81603a;
+  font: 10px SerificRegular, arial, sans-serif;
+  font-weight: bold;
+  height: auto;
+  text-align: center;
+  width: 60px !important;
+  vertical-align: middle !important;
+}
+tr {
+  width: 785px;
+}
+.selected {
+  background-color: red;
+}
+.gridContainer {
+  background-color: #f6f6f6;
+  margin: 0 auto;
+  padding-bottom: 8px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+.hMove {
+  background-color: #fff;
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  opacity: 0.4;
+  filter: alpha(opacity = 40);
+}
+.vMove {
+  background-color: #fff;
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  opacity: 0.4;
+  filter: alpha(opacity = 40);
+}
+.baby {
+  width: 30px;
+  height: 30px;
+}
+
+.boy {
+  background: url('/images/boy.png') no-repeat center center;
+  background-size: contain;
+}
+.girl {
+  background: url('/images/girl.png') no-repeat center center;
+  background-size: contain;
+}
+.popGirl,
+.popBoy {
+  display: none;
+  position: absolute !important;
+}
+.popGirl img,
+.popBoy img {
+  width: 100%;
+  height: auto;
+}
+#modalName1,
+#modalName2 {
+  display: none;
+}
+fieldset {
+  border: none;
+}
+.bgGender {
+  background: url('/images/gender.jpg') top center #fff no-repeat;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.bgGender.botImage {
+  display: none;
+}
+
+#opt1 {
+  width: 80px;
+}
+#opt2 {
+  width: 120px;
+}
+
+tr.noBorder td,
+td.noBorder {
+  border-right: 0;
+}
+/*modal styling*/
+.boyGender,
+.girlGender {
+  margin: 20px auto 0 25px;
+  text-align: center;
+  width: 280px;
+}
+
+.calculator_content {
+  float: left;
+  max-width: 100%;
+}
+.calculator_content h1 {
+  color: #eb869e;
+  font: 26px SerificRegular, arial, sans-serif;
+  margin-bottom: 10px;
+  position: relative;
+}
+fieldset select {
+  border: 1px solid #ccc;
+  font-size: inherit;
+  font-weight: inherit;
+}
+header#topheader #sitetabs #TBLinks.managelinks a {
+  font-size: 11px !important;
+}
+h3 .tabTB {
+  text-indent: -9999px;
+}
+
+.select_area {
+  padding: 20px;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 400px) {
+  .baby {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .baby {
+    width: 25px;
+    height: 25px;
+  }
+  td {
+    max-width: 30px !important;
+  }
+  tr {
+    width: 785px;
+  }
+}
+p.gender_text {
+  position: absolute;
+  max-width: 200px;
+  top: 20px;
+  left: 200px;
+  font-size: 13px;
+}
