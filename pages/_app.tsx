@@ -6,9 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import PageWithLayoutType from '@constants/page'
 import theme from '@theme/index'
-import { PersistGate } from 'redux-persist/integration/react'
-import { persistStore } from 'redux-persist'
-import { useStore } from 'react-redux'
+import { useStore, Provider } from 'react-redux'
 import { authorizationProvider } from '@services/interceptor'
 import createCache from '@emotion/cache'
 import moment from 'moment'
@@ -16,7 +14,6 @@ import '@css/main.scss'
 import { StylesProvider } from '@mui/styles'
 import Seo from '@components/Seo'
 import _ from 'lodash'
-import Loader from '@components/Loader/'
 
 moment.locale('mn')
 
@@ -50,36 +47,26 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   return (
     <StylesProvider injectFirst>
       <CacheProvider value={cache}>
-        <Seo
-          title={_.get(data, 'og_title', undefined) || 'babyzone.mn'}
-          description={
-            _.get(data, 'og_content', undefined) ||
-            'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
-          }
-          image={
-            (_.get(data, 'og_image', '') as string) || '/images/default.png'
-          }
-        />
-        <PersistGate
-          persistor={persistStore(store)}
-          loading={
-            <Loader
-              width="100%"
-              height={500}
-              display="flex"
-              justifyContent={'center'}
-              alignItems="center"
-              color="white"
-            />
-          }
-        >
+        {pageProps.seo ? (
+          <Seo
+            title={_.get(data, 'og_title', undefined) || 'babyzone.mn'}
+            description={
+              _.get(data, 'og_content', undefined) ||
+              'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
+            }
+            image={
+              (_.get(data, 'og_image', '') as string) || '/images/default.png'
+            }
+          />
+        ) : null}
+        <Provider store={store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>
-        </PersistGate>
+        </Provider>
       </CacheProvider>
     </StylesProvider>
   )

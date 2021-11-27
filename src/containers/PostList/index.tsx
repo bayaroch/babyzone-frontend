@@ -1,5 +1,5 @@
 import usePosts from '@utils/hooks/usePosts'
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect } from 'react'
 import MediaCard from '@components/MediaCard'
 import Box from '@mui/material/Box'
 import _ from 'lodash'
@@ -37,7 +37,7 @@ const PostList: React.FC<PostListProps> = ({ category, tag }) => {
     initList({ per_page: 10, page: 1, category: category, tag: tag })
   }, [category])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const updateSize = () => {
       cache.clearAll()
     }

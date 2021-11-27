@@ -41,7 +41,7 @@ const Seo: React.FC<SeoProps> = ({
     {image ? (
       <meta property="og:image" content={`${image}`} />
     ) : (
-      <meta property="og:image" content="/images/placeholder.png" />
+      <meta property="og:image" content="/images/default.png" />
     )}
     {image && <meta name="twitter:image" content={`${image}`} />}
     {canonical && <link rel="canonical" href={`${canonical}`} />}

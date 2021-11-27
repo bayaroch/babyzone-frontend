@@ -150,6 +150,15 @@ const CategoryList: React.FC<CategoryListProps> = ({
         ) : (
           ''
         )}
+        <Typography
+          component="li"
+          align="center"
+          sx={{ fontSize: 11, color: '#aaa' }}
+          variant="body2"
+        >
+          © 2021 Babyzone.mn. Эх сурвалжийг дурдалгүй зураг нийтлэл түгээх нь
+          хуулиар хориотой.
+        </Typography>
       </List>
     </>
   )

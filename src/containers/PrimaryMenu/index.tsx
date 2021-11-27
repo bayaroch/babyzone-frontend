@@ -3,14 +3,15 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import { primarymenu, MenuItemType } from '@constants/menu.constants'
 
-interface CategoryListProps {
+interface PrimaryMenuProps {
   onPress?: (path: string) => void
   asPath: string
 }
 
-const CategoryList: React.FC<CategoryListProps> = ({ onPress, asPath }) => {
+const PrimaryMenu: React.FC<PrimaryMenuProps> = ({ onPress, asPath }) => {
   return (
     <List
+      component="div"
       sx={{
         width: '100%',
       }}
@@ -18,7 +19,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ onPress, asPath }) => {
       {primarymenu &&
         primarymenu.map((item: MenuItemType, index) => (
           <ListItem
-            component="li"
+            component="div"
             key={index}
             selected={asPath === item.route}
             onClick={() => onPress && onPress(item.route)}
@@ -60,4 +61,4 @@ const CategoryList: React.FC<CategoryListProps> = ({ onPress, asPath }) => {
   )
 }
 
-export default CategoryList
+export default PrimaryMenu

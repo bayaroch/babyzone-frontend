@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { Container, Grid } from '@mui/material'
 import CategoryMenu from '@containers/CategoryMenu'
 import PostListByCategory from '@containers/PostListbyCategory'
+import Seo from '@components/Seo'
 
 const Category: PageWithLayoutType = () => {
   const router = useRouter()
@@ -14,6 +15,13 @@ const Category: PageWithLayoutType = () => {
   // eslint-disable-next-line no-console
   return (
     <MainLayout>
+      <Seo
+        title={'babyzone.mn'}
+        description={
+          'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
+        }
+        image={'/images/default.png'}
+      />
       <Container
         maxWidth="lg"
         sx={{

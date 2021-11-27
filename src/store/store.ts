@@ -1,16 +1,14 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { createWrapper, MakeStore } from 'next-redux-wrapper'
 import reducer from './reducers'
-import {
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist'
-import storage from './storage'
+// import {
+//   FLUSH,
+//   REHYDRATE,
+//   PAUSE,
+//   PERSIST,
+//   PURGE,
+//   REGISTER,
+// } from 'redux-persist'
 
 export interface AppState {
   metadata: any
@@ -28,27 +26,10 @@ const initStore: MakeStore<AppState> = () => {
   if (isServer) {
     return configureStore({
       reducer,
-      middleware: getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }),
     })
   } else {
-    const persistConfig = {
-      key: 'auth',
-      whitelist: ['auth'],
-      storage,
-    }
-
-    const persistedReducer = persistReducer(persistConfig, reducer)
     const store = configureStore({
-      reducer: persistedReducer,
-      middleware: getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }),
+      reducer: reducer,
     })
 
     return store

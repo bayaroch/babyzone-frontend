@@ -1,5 +1,5 @@
 import CategoryList from '@components/CategoryList'
-import { Box, Drawer, Typography } from '@mui/material'
+import { Box, Drawer } from '@mui/material'
 import useCategories from '@utils/hooks/useCategories'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -33,8 +33,8 @@ export const CustomDrawer: React.FC<DrawerProps> = ({ toggleDrawer, open }) => {
     toggleDrawer(false)
   }
 
-  const onNavigate = (_route: string) => {
-    toggleDrawer(false)
+  const onNavigate = (route: string) => {
+    if (router) router.push(route)
   }
 
   return (
@@ -67,9 +67,8 @@ export const CustomDrawer: React.FC<DrawerProps> = ({ toggleDrawer, open }) => {
         ) : (
           ''
         )}
-        <Typography color={'#FFF'}>
-          <PrimaryMenu asPath={router.asPath} onPress={onNavigate} />
-        </Typography>
+
+        <PrimaryMenu asPath={router.asPath} onPress={onNavigate} />
       </Box>
     </Drawer>
   )
