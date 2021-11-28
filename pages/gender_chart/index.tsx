@@ -102,11 +102,7 @@ const GenderChart: PageWithLayoutType = () => {
             >
               Хүйс тодорхойлогч зурхай
             </Typography>
-            <Typography variant="body1" mb={1}>
-              Бээжингээс олдсон 800 жилийн настай хааны булшнаас (монгол хааных
-              байх магадлалтай) гарсан төрөх хүүхдийн хүйсийг тодорхойлдог
-              энэхүү зурлага нь 90% таардаг гэлцдэг. Таных таарч байна уу?
-            </Typography>
+
             <Box
               sx={{
                 padding: {
@@ -117,6 +113,12 @@ const GenderChart: PageWithLayoutType = () => {
                 },
               }}
             >
+              <Typography variant="body1" mb={1}>
+                Бээжингээс олдсон 800 жилийн настай хааны булшнаас (монгол
+                хааных байх магадлалтай) гарсан төрөх хүүхдийн хүйсийг
+                тодорхойлдог энэхүү зурлага нь 90% таардаг гэлцдэг. Таных таарч
+                байна уу?
+              </Typography>
               <form id="gender-form" onSubmit={handleSubmit(onSubmit)}>
                 <Grid container columnSpacing={{ xs: 0, sm: 0, md: 1, lg: 1 }}>
                   <Grid item xs={12} sm={12} md={5}>
