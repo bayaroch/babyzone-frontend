@@ -58,7 +58,7 @@ const GenderChart: PageWithLayoutType = () => {
                 хааных байх магадлалтай) гарсан төрөх хүүхдийн хүйсийг
                 тодорхойлдог энэхүү зурлага нь 90% таардаг гэлцдэг. Таных таарч
                 байна уу?"
-        image="/images/gender_chart.jpg"
+        image="images/gender_chart.jpg"
       />
       <Container
         maxWidth="lg"
