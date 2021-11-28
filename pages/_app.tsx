@@ -54,7 +54,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
           ></meta>
           <meta property="fb:app_id" content="940486373573016" />
-          <meta property="fb:admins" content="648850948465550" />
+          <meta property="fb:admins" content="2648881205129171" />
         </Head>
         {pageProps.seo ? (
           <Seo
