@@ -14,10 +14,10 @@ import {
   Typography,
 } from '@mui/material'
 import CategoryMenu from '@containers/CategoryMenu'
-import genderTable from './genderTable'
-import useGenderForm, { GenderFormParams } from './useGenderForm'
+import genderTable from '@utils/gender/genderTable'
+import useGenderForm, { GenderFormParams } from '@utils/gender/useGenderForm'
 import { FieldValues } from 'react-hook-form'
-import useJquery from './useJquery'
+import useJquery from '@utils/gender/useJquery'
 import DialogTitle from '@mui/material/DialogTitle'
 import Dialog from '@mui/material/Dialog'
 import { Share } from '@components/PostElements'
