@@ -24,6 +24,7 @@ import { Share } from '@components/PostElements'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { AGE_DATA, MONTH_DATA } from '@constants/gender.constants'
+import Seo from '@components/Seo'
 
 const Comment = dynamic(() =>
   import('@components/PostElements/FacebookComment')
@@ -51,6 +52,14 @@ const GenderChart: PageWithLayoutType = () => {
 
   return (
     <MainLayout>
+      <Seo
+        title="Хүйс тодорхойлогч зурхай"
+        description="Бээжингээс олдсон 800 жилийн настай хааны булшнаас (монгол
+                хааных байх магадлалтай) гарсан төрөх хүүхдийн хүйсийг
+                тодорхойлдог энэхүү зурлага нь 90% таардаг гэлцдэг. Таных таарч
+                байна уу?"
+        image="/images/gender_chart.jpg"
+      />
       <Container
         maxWidth="lg"
         sx={{
