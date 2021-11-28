@@ -10,7 +10,6 @@ import {
   DialogContent,
   Grid,
   MenuItem,
-  NativeSelect,
   Select,
   Typography,
 } from '@mui/material'
@@ -134,6 +133,14 @@ const GenderChart: PageWithLayoutType = () => {
                             fullWidth={true}
                             labelId="age"
                             inputRef={ref}
+                            sx={{
+                              '& legend': {
+                                display: 'none',
+                              },
+                              '& fieldset': {
+                                top: 0,
+                              },
+                            }}
                             value={value}
                             variant="outlined"
                             label={<Typography color={'#111'}>Нас</Typography>}
@@ -162,12 +169,20 @@ const GenderChart: PageWithLayoutType = () => {
                       control={control}
                       render={({ field: { onChange, value } }: FieldValues) => (
                         <>
-                          <NativeSelect
+                          <Select
                             onChange={onChange}
                             required={true}
                             fullWidth={true}
                             labelId="month"
                             value={value}
+                            sx={{
+                              '& legend': {
+                                display: 'none',
+                              },
+                              '& fieldset': {
+                                top: 0,
+                              },
+                            }}
                             label="Сар"
                             placeholder={'Сар'}
                             size="small"
@@ -180,7 +195,7 @@ const GenderChart: PageWithLayoutType = () => {
                                 </MenuItem>
                               )
                             })}
-                          </NativeSelect>
+                          </Select>
                           <Typography sx={{ mb: 2 }} variant="body2">
                             Хүүхэд олсон сар
                           </Typography>
