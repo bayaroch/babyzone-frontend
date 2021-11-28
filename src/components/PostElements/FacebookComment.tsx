@@ -22,7 +22,7 @@ const FacebookComment: React.FC<FBProps> = ({ href, router }) => {
 
   return (
     <>
-      <div id="fb-root" />
+      <div id="fb-root"></div>
       <div
         className="fb-comments"
         data-href={href ? href : asPath}
