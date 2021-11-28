@@ -14,13 +14,7 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-          ></meta>
 
-          <meta property="fb:app_id" content="940486373573016" />
-          <meta property="fb:admins" content="5258612810822651" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=UA-52439723-1`}

@@ -14,6 +14,7 @@ import '@css/main.scss'
 import { StylesProvider } from '@mui/styles'
 import Seo from '@components/Seo'
 import _ from 'lodash'
+import Head from 'next/head'
 
 moment.locale('mn')
 
@@ -47,6 +48,14 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   return (
     <StylesProvider injectFirst>
       <CacheProvider value={cache}>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          ></meta>
+          <meta property="fb:app_id" content="940486373573016" />
+          <meta property="fb:admins" content="5258612810822651" />
+        </Head>
         {pageProps.seo ? (
           <Seo
             title={_.get(data, 'og_title', undefined) || 'babyzone.mn'}
@@ -55,7 +64,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
             }
             image={
-              (_.get(data, 'og_image', '') as string) || '/images/default.png'
+              (_.get(data, 'og_image', '') as string) || 'images/default.png'
             }
           />
         ) : null}
