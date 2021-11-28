@@ -10,6 +10,7 @@ import {
   DialogContent,
   Grid,
   MenuItem,
+  NativeSelect,
   Select,
   Typography,
 } from '@mui/material'
@@ -37,7 +38,6 @@ const GenderChart: PageWithLayoutType = () => {
   const { methods, Controller } = useGenderForm()
   const {
     control,
-    reset,
     handleSubmit,
     formState: { errors },
   } = methods
@@ -48,7 +48,6 @@ const GenderChart: PageWithLayoutType = () => {
 
   const handleClose = () => {
     setOpen(false)
-    reset()
   }
 
   return (
@@ -128,27 +127,32 @@ const GenderChart: PageWithLayoutType = () => {
                       render={({
                         field: { ref, onChange, value },
                       }: FieldValues) => (
-                        <Select
-                          sx={{ mb: 2 }}
-                          onChange={onChange}
-                          required={true}
-                          fullWidth={true}
-                          inputRef={ref}
-                          value={value}
-                          variant="outlined"
-                          label={<Typography color={'#111'}>Нас</Typography>}
-                          size="small"
-                          placeholder={'Нас'}
-                          error={!!errors.av}
-                        >
-                          {AGE_DATA.map((item, index) => {
-                            return (
-                              <MenuItem value={item} key={index}>
-                                {item}
-                              </MenuItem>
-                            )
-                          })}
-                        </Select>
+                        <>
+                          <Select
+                            onChange={onChange}
+                            required={true}
+                            fullWidth={true}
+                            labelId="age"
+                            inputRef={ref}
+                            value={value}
+                            variant="outlined"
+                            label={<Typography color={'#111'}>Нас</Typography>}
+                            size="small"
+                            placeholder={'Нас'}
+                            error={!!errors.av}
+                          >
+                            {AGE_DATA.map((item, index) => {
+                              return (
+                                <MenuItem value={item} key={index}>
+                                  {item}
+                                </MenuItem>
+                              )
+                            })}
+                          </Select>
+                          <Typography sx={{ mb: 2 }} variant="body2">
+                            Хүүхэд олсон ээжийн нас
+                          </Typography>
+                        </>
                       )}
                     />
                   </Grid>
@@ -157,25 +161,30 @@ const GenderChart: PageWithLayoutType = () => {
                       name="mv"
                       control={control}
                       render={({ field: { onChange, value } }: FieldValues) => (
-                        <Select
-                          sx={{ mb: 2 }}
-                          onChange={onChange}
-                          required={true}
-                          fullWidth={true}
-                          value={value}
-                          label="Сар"
-                          placeholder={'Сар'}
-                          size="small"
-                          error={!!errors.mv}
-                        >
-                          {MONTH_DATA.map((item, index) => {
-                            return (
-                              <MenuItem value={item} key={index}>
-                                {item}-р сар
-                              </MenuItem>
-                            )
-                          })}
-                        </Select>
+                        <>
+                          <NativeSelect
+                            onChange={onChange}
+                            required={true}
+                            fullWidth={true}
+                            labelId="month"
+                            value={value}
+                            label="Сар"
+                            placeholder={'Сар'}
+                            size="small"
+                            error={!!errors.mv}
+                          >
+                            {MONTH_DATA.map((item, index) => {
+                              return (
+                                <MenuItem value={item} key={index}>
+                                  {item}-р сар
+                                </MenuItem>
+                              )
+                            })}
+                          </NativeSelect>
+                          <Typography sx={{ mb: 2 }} variant="body2">
+                            Хүүхэд олсон сар
+                          </Typography>
+                        </>
                       )}
                     />
                   </Grid>

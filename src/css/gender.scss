@@ -26,7 +26,6 @@ tr {
   margin: 0 auto;
   padding-bottom: 8px;
   position: relative;
-  overflow: hidden;
   width: 100%;
   text-align: center;
   margin: 0 auto;
@@ -68,6 +67,7 @@ tr {
 }
 .popGirl,
 .popBoy {
+  z-index: 888;
   display: none;
   position: absolute !important;
 }

@@ -27,10 +27,14 @@ const useJquery = (): {
     function determinSexPop() {
       if ($('#' + cv).hasClass('boy')) {
         setFemale(false)
+        $('.popBoy').css('display', 'block')
       } else {
         setFemale(true)
+        $('.popGirl').css('display', 'block')
       }
-      setTimeout(setOpen(true), 1500) /* delays opening of the popup window*/
+      setTimeout(() => {
+        setOpen(true)
+      }, 1200)
     }
 
     const animate = (av: string, mv: string): void => {

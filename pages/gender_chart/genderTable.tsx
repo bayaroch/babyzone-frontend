@@ -2,6 +2,26 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 
 const genderTable = (): ReactJSXElement => (
   <div className="gridContainer">
+    <div className="popGirl">
+      <img
+        id="girlImage"
+        src="/images/girl_hiMom.png"
+        alt="hi, mom!"
+        width="86"
+        height="90"
+        style={{ display: 'inline-block' }}
+      />
+    </div>
+    <div className="popBoy">
+      <img
+        id="boyImage"
+        src="/images/boy_hiMom.png"
+        alt="hi, mom!"
+        width="86"
+        height="90"
+        style={{ display: 'inline-block' }}
+      />
+    </div>
     <div className="vMove" />
     <div className="hMove" />
     <table className="gender-table" cellPadding={0} cellSpacing={0}>
