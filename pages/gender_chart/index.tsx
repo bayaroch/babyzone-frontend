@@ -17,13 +17,13 @@ import CategoryMenu from '@containers/CategoryMenu'
 import genderTable from './genderTable'
 import useGenderForm, { GenderFormParams } from './useGenderForm'
 import { FieldValues } from 'react-hook-form'
-import { AGE_DATA, MONTH_DATA } from './form.constants'
 import useJquery from './useJquery'
 import DialogTitle from '@mui/material/DialogTitle'
 import Dialog from '@mui/material/Dialog'
 import { Share } from '@components/PostElements'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { AGE_DATA, MONTH_DATA } from '@constants/gender.constants'
 
 const Comment = dynamic(() =>
   import('@components/PostElements/FacebookComment')
