@@ -39,7 +39,7 @@ const Detail = ({ error }: { error: boolean }) => {
   const article = _.isArray(data) ? data[0] : undefined
 
   const time =
-    article && article.date ? CommonHelper.staticSmartTime(data.date) : ''
+    article && article.date ? CommonHelper.staticSmartTime(article.date) : ''
 
   const sliderImages = _.get(article, 'acf.featured_slide', [])
   const steps: StepItemType[] = _.get(article, 'acf.steps', []) as []
