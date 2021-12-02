@@ -201,9 +201,9 @@ export async function getStaticPaths() {
   const paths = posts.map((post: CustomPostResponse) => ({
     params: {
       id: post.id.toString(),
-      og_title: post.title,
-      og_image: post.featured_img_src,
-      og_content: post.content,
+      title: post.title,
+      featured_image: post.featured_img_src,
+      content: post.content,
     },
   }))
 
@@ -217,8 +217,11 @@ export async function getStaticProps({
 }: {
   params: CustomPostResponse
 }) {
+  const res = await axios.get(`${URI.SEO}/${params.id}`)
+  const post = await res.data
+
   return {
-    props: { seo: params },
+    props: { seo: post },
   }
 }
 
