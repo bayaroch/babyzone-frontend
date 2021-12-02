@@ -9,6 +9,7 @@ import PostList from '@containers/PostList'
 import CategoryMenu from '@containers/CategoryMenu'
 import { Tag as TagIcon } from '@mui/icons-material'
 import Seo from '@components/Seo'
+import { WEB } from '@constants/uri.constants'
 
 const Tag: PageWithLayoutType = () => {
   const router = useRouter()
@@ -30,7 +31,7 @@ const Tag: PageWithLayoutType = () => {
           description={
             'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
           }
-          image={'/images/default.png'}
+          image={`${WEB}/images/default.png`}
         />
         <Grid container columnSpacing={{ xs: 0 }}>
           <Grid item xs={12} md={8}>

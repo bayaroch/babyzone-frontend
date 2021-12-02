@@ -1,3 +1,5 @@
+import { WEB } from './uri.constants'
+
 export interface MenuItemType {
   label: string
   route: string
@@ -28,7 +30,7 @@ export const primarymenu: MenuItemType[] = [
     id: 3,
     slug: 'contact',
     seo: {
-      image: 'images/default.png',
+      image: `${WEB}/images/default.png`,
       content: 'Холбоо Барих',
     },
   },
@@ -38,7 +40,7 @@ export const primarymenu: MenuItemType[] = [
     slug: 'terms',
     id: 4,
     seo: {
-      image: 'images/default.png',
+      image: `${WEB}/images/default.png`,
       content: 'Үйлчилгээний нөхцөл',
     },
   },
