@@ -14,6 +14,7 @@ import '@css/main.scss'
 import { StylesProvider } from '@mui/styles'
 import Seo from '@components/Seo'
 import _ from 'lodash'
+import 'moment/locale/mn'
 import Head from 'next/head'
 
 moment.locale('mn')
