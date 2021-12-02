@@ -6,6 +6,7 @@ export const WEB = 'https://babyzone.mn'
 
 export const URI = {
   ALL_POSTS: API_ROOT + 'posts',
+  ALL_POST_DATA: API_CUSTOM_ROOT + 'all-posts',
   POST: API_ROOT + 'post',
   CATEGORIES: API_ROOT + 'categories',
   PAGE: API_ROOT + 'pages',

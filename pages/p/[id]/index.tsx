@@ -17,6 +17,16 @@ import { useRouter } from 'next/router'
 import Loader from '@components/Loader'
 import useTags from '@utils/hooks/useTags'
 import useDetail from '@utils/hooks/useDetail'
+import axios from 'axios'
+
+export interface CustomPostResponse {
+  id: number
+  slug: string
+  content: string
+  title: string
+  featured_img_src: string
+  url: string
+}
 
 const Detail = ({ error }: { error: boolean }) => {
   const router = useRouter()
@@ -182,15 +192,45 @@ export default Detail
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function getServerSideProps({
-  query: { id },
-}: {
-  query: { id: string }
-}) {
-  const res = await fetch(`${URI.SEO}/${id}`)
-  return {
-    props: {
-      seo: await res.json(),
+
+export async function getStaticPaths() {
+  const res = await axios.get(URI.ALL_POST_DATA)
+  const posts = res.data
+
+  // Get the paths we want to pre-render based on posts
+  const paths = posts.map((post: CustomPostResponse) => ({
+    params: {
+      id: post.id.toString(),
+      og_title: post.title,
+      og_image: post.featured_img_src,
+      og_content: post.content,
     },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  return { paths, fallback: false }
+}
+
+// This also gets called at build time
+export async function getStaticProps({
+  params,
+}: {
+  params: CustomPostResponse
+}) {
+  return {
+    props: { seo: params },
   }
 }
+
+// export async function getServerSideProps({
+//   query: { id },
+// }: {
+//   query: { id: string }
+// }) {
+//   const res = await fetch(`${URI.SEO}/${id}`)
+//   return {
+//     props: {
+//       seo: await res.json(),
+//     },
+//   }
+// }
