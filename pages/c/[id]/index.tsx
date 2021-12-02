@@ -12,7 +12,6 @@ import Seo from '@components/Seo'
 const Category: PageWithLayoutType = () => {
   const router = useRouter()
   const { id } = router.query
-  // eslint-disable-next-line no-console
   return (
     <MainLayout>
       <Seo
