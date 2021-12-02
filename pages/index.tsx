@@ -8,7 +8,6 @@ import { Container, Grid } from '@mui/material'
 import PostList from '@containers/PostList'
 import CategoryMenu from '@containers/CategoryMenu'
 import Seo from '@components/Seo'
-import { WEB } from '@constants/uri.constants'
 
 const HomePage: PageWithLayoutType = () => {
   return (
@@ -26,7 +25,7 @@ const HomePage: PageWithLayoutType = () => {
         description={
           'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
         }
-        image={`${WEB}/images/default.png`}
+        image={`images/default.png`}
       />
       <Grid container columnSpacing={{ xs: 0 }}>
         <Grid item xs={12} md={8}>

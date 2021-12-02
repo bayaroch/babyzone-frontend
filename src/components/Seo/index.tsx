@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import { WEB } from '@constants/uri.constants'
 
 type SeoProps = {
   title: string
@@ -40,9 +39,15 @@ const Seo: React.FC<SeoProps> = ({
 
     {css && <link rel="stylesheet" href={`${css}`} />}
     {image ? (
-      <meta property="og:image" content={`${image}`} />
+      <>
+        <meta property="og:image" content={`${image}`} />
+        <meta property="og:image:url" content={`${image}`} />
+      </>
     ) : (
-      <meta property="og:image" content={`${WEB}/images/default.png`} />
+      <>
+        <meta property="og:image" content={`images/default.png`} />
+        <meta property="og:image:url" content={`images/default.png`} />
+      </>
     )}
     {image && <meta name="twitter:image" content={`${image}`} />}
     {canonical && <link rel="canonical" href={`${canonical}`} />}

@@ -8,7 +8,6 @@ import { Container, Grid } from '@mui/material'
 import CategoryMenu from '@containers/CategoryMenu'
 import PostListByCategory from '@containers/PostListbyCategory'
 import Seo from '@components/Seo'
-import { WEB } from '@constants/uri.constants'
 
 const Category: PageWithLayoutType = () => {
   const router = useRouter()
@@ -20,7 +19,7 @@ const Category: PageWithLayoutType = () => {
         description={
           'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
         }
-        image={`${WEB}/images/default.png`}
+        image={`images/default.png`}
       />
       <Container
         maxWidth="lg"
