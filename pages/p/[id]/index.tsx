@@ -201,9 +201,6 @@ export async function getStaticPaths() {
   const paths = posts.map((post: CustomPostResponse) => ({
     params: {
       id: post.id.toString(),
-      title: post.title,
-      featured_image: post.featured_img_src,
-      content: post.content,
     },
   }))
 
