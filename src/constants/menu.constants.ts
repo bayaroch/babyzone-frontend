@@ -28,7 +28,7 @@ export const primarymenu: MenuItemType[] = [
     id: 3,
     slug: 'contact',
     seo: {
-      image: `images/default.png`,
+      image: `images/babyzone.jpg`,
       content: 'Холбоо Барих',
     },
   },
@@ -38,7 +38,7 @@ export const primarymenu: MenuItemType[] = [
     slug: 'terms',
     id: 4,
     seo: {
-      image: `images/default.png`,
+      image: `images/babyzone.jpg`,
       content: 'Үйлчилгээний нөхцөл',
     },
   },

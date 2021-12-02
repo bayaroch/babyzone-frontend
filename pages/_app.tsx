@@ -65,7 +65,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
               'Шинэ ээж аавуудад, эмэгтэйчүүдэд жирэмслэлт, төрөлт, өсгөн хүмүүжүүлэх тал дээр хэрэгцээтэй мэдээллээр ханган туслах зорилготой.'
             }
             image={
-              (_.get(data, 'og_image', '') as string) || 'images/default.png'
+              (_.get(data, 'og_image', '') as string) || 'images/babyzone.jpg'
             }
           />
         ) : null}

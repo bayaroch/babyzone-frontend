@@ -45,8 +45,8 @@ const Seo: React.FC<SeoProps> = ({
       </>
     ) : (
       <>
-        <meta property="og:image" content={`images/default.png`} />
-        <meta property="og:image:url" content={`images/default.png`} />
+        <meta property="og:image" content={`images/babyzone.jpg`} />
+        <meta property="og:image:url" content={`images/babyzone.jpg`} />
       </>
     )}
     {image && <meta name="twitter:image" content={`${image}`} />}
