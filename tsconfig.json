@@ -32,7 +32,8 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "incremental": true
   },
   "exclude": [
     "dist",
@@ -47,5 +48,5 @@
     "**/*.test.tsx",
     "coverage"
   ],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src", "decs.d.ts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
