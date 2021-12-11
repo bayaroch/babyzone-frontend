@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
-
+          <meta property="fb:pages" content="513512032088069" />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=UA-52439723-1`}

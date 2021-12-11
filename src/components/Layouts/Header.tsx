@@ -12,6 +12,7 @@ const Header: React.FC<HeaderProps> = (props) => {
   const { open, setOpen } = props
   const classes = useStyles()
   const router = useRouter()
+
   return (
     <Box className={classes.header}>
       <Container
@@ -19,7 +20,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         maxWidth="lg"
         className={classes.container}
       >
-        {router.asPath !== '/' ? (
+        {router.pathname !== '/' ? (
           <Box
             sx={{
               position: 'absolute',
@@ -33,7 +34,7 @@ const Header: React.FC<HeaderProps> = (props) => {
               alignItems: 'center',
               display: {
                 lg: 'none',
-                md: 'flex',
+                md: 'none',
                 sm: 'flex',
                 xs: 'flex',
               },
