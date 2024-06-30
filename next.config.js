@@ -1,46 +1,37 @@
-const {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD,
-} = require('next/constants')
+const path = require('path')
 
-const getBuildConfig = (...args) => {
-  const path = require('path')
-  const withPugins = require('next-compose-plugins')
-  const withSCSS = require('@zeit/next-sass')
-  const cssOptions = {
-    sassLoaderOptions: {
-      includePaths: [path.join(process.cwd(), 'src', 'common', 'css')],
-    },
-  }
-
-  const nextConfig = {}
-  return withPugins([[withSCSS, cssOptions]], nextConfig)(...args)
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true, // Enable React strict mode for improved error handling
+  sassOptions: {
+    includePaths: [path.join(process.cwd(), 'src', 'common', 'css')],
+  },
+  experimental: {
+    esmExternals: true,
+  },
+  // Uncomment the following lines if you need to add custom webpack config
+  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  //   // Add your custom webpack configurations here
+  //   return config;
+  // },
+  // Uncomment if you need to add headers
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/:path*',
+  //       headers: [
+  //         // Add your custom headers here
+  //       ],
+  //     },
+  //   ];
+  // },
+  // Uncomment if you need to add redirects
+  // async redirects() {
+  //   return [
+  //     // Add your redirects here
+  //   ];
+  // },
+  // Add other Next.js specific configurations as needed
 }
 
-module.exports = (phase, ...rest) => {
-  const shouldAddBuildConfig =
-    phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD
-  return shouldAddBuildConfig ? getBuildConfig(phase, ...rest) : {}
-}
-
-module.exports = {
-  presets: ['next/babel'],
-  plugins: [
-    [
-      'babel-plugin-module-resolver',
-      {
-        root: ['.'],
-        alias: {
-          '@components': './src/components',
-          '@containers': './src/containers',
-          '@css': './src/css',
-          '@store': './src/store',
-          '@constants': './src/constants',
-          '@services': './src/services',
-          '@utils': './src/utils',
-          '@theme': './src/theme',
-        },
-      },
-    ],
-  ],
-}
+module.exports = nextConfig

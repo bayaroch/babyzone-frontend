@@ -16,6 +16,8 @@ import Seo from '@components/Seo'
 import _ from 'lodash'
 import 'moment/locale/mn'
 import Head from 'next/head'
+import ReactGA4 from 'react-ga4'
+import { useRouter } from 'next/router'
 
 moment.locale('mn')
 
@@ -36,12 +38,45 @@ const CustomApp = ({ Component, pageProps }: Props) => {
   const store: StoreType = useStore()
   authorizationProvider()
 
+  const router = useRouter()
+
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
       jssStyles.parentElement?.removeChild(jssStyles)
     }
+  }, [])
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      ReactGA4.send({
+        hitType: 'pageview',
+        page: url,
+      })
+    }
+
+    // Subscribe to the route change events
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // Unsubscribe from the events when the component unmounts
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
+  const trackingID = process.env.REACT_APP_GOOGLE_ANALYTICS
+    ? process.env.REACT_APP_GOOGLE_ANALYTICS
+    : 'G-HNT6CEDKJV'
+
+  useEffect(() => {
+    trackingID &&
+      ReactGA4.initialize(trackingID, {
+        gaOptions: {
+          cookieDomain: '.unimedia.mn', // Ensure cookies are accessible across subdomains
+          cookieFlags: 'SameSite=None; Secure', // Set SameSite and Secure attributes
+        },
+      })
   }, [])
 
   const data = pageProps.seo

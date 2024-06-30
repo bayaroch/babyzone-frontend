@@ -18,6 +18,11 @@ import Loader from '@components/Loader'
 import useTags from '@utils/hooks/useTags'
 import useDetail from '@utils/hooks/useDetail'
 import axios from 'axios'
+import dynamic from 'next/dynamic'
+
+const Comment = dynamic(() =>
+  import('@components/PostElements/FacebookComment')
+)
 
 export interface CustomPostResponse {
   id: number
@@ -183,6 +188,7 @@ const Detail = ({ error }: { error: boolean }) => {
         {metaDetail.loaded && metaDetail.error && (
           <Typography>Мэдээлэл алга</Typography>
         )}
+        <Comment router={router} />
       </Container>
     </MainLayout>
   )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { PropsWithChildren, useState } from 'react'
 import Header from './Header'
 import { CustomDrawer } from './CustomDrawer'
 
@@ -8,7 +8,10 @@ interface MainLayoutProps {
   regular?: boolean
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children, darkMode }) => {
+const MainLayout: React.FC<MainLayoutProps & PropsWithChildren> = ({
+  children,
+  darkMode,
+}) => {
   const [open, letOpen] = useState(false)
   const setOpen = (val: boolean) => {
     letOpen(val)
