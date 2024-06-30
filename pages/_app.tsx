@@ -65,9 +65,7 @@ const CustomApp = ({ Component, pageProps }: Props) => {
     }
   }, [router.events])
 
-  const trackingID = process.env.REACT_APP_GOOGLE_ANALYTICS
-    ? process.env.REACT_APP_GOOGLE_ANALYTICS
-    : 'G-HNT6CEDKJV'
+  const trackingID = 'UA-52439723-1'
 
   useEffect(() => {
     trackingID &&
