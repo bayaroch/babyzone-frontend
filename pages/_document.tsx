@@ -15,22 +15,6 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <meta property="fb:pages" content="513512032088069" />
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=UA-52439723-1`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-52439723-1', {
-              page_path: window.location.pathname,
-            });
-          `,
-            }}
-          />
         </Head>
         <body>
           <Main />
