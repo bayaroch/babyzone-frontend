@@ -1,3 +1,4 @@
+import React from 'react'
 import Box from '@mui/material/Box'
 import {
   FacebookIcon,
@@ -9,6 +10,10 @@ import {
 import { BoxProps } from '@mui/material'
 
 const Share: React.FC<BoxProps> = ({ ...rest }) => {
+  const url = typeof window !== 'undefined' ? window.location.href : ''
+
+  if (!url) return null
+
   return (
     <Box className="author" {...rest}>
       <Box
@@ -23,11 +28,11 @@ const Share: React.FC<BoxProps> = ({ ...rest }) => {
           },
         }}
       >
-        <FacebookShareButton url={window && window.location.href}>
+        <FacebookShareButton url={url}>
           <FacebookIcon size={32} />
-          <FacebookShareCount url={window && window.location.href} />
+          <FacebookShareCount url={url} />
         </FacebookShareButton>
-        <TwitterShareButton url={window && window.location.href}>
+        <TwitterShareButton url={url}>
           <TwitterIcon size={32} />
         </TwitterShareButton>
       </Box>

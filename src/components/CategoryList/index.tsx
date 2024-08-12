@@ -164,9 +164,4 @@ const CategoryList: React.FC<CategoryListProps> = ({
   )
 }
 
-CategoryList.defaultProps = {
-  color: 'dark',
-  width: 280,
-}
-
 export default CategoryList

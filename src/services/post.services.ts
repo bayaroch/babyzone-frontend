@@ -28,6 +28,32 @@ export const postServices = {
     return { data, headers: headers['x-wp-total'] }
   },
 
+  getAllPregnancy: async (
+    meta?: PageMetaParams,
+    fields?: string // https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/
+  ): Promise<{ data: WP_REST_API_Posts; headers: number }> => {
+    const { data, headers } = await api.get<WP_REST_API_Posts>(
+      `${URI.PREGNANCY}?_embed&page=${meta && meta.page}&per_page=${
+        meta && meta.per_page
+      }&_fields=${fields}`
+    )
+
+    return { data, headers: headers['x-wp-total'] }
+  },
+
+  getAllBaby: async (
+    meta?: PageMetaParams,
+    fields?: string // https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/
+  ): Promise<{ data: WP_REST_API_Posts; headers: number }> => {
+    const { data, headers } = await api.get<WP_REST_API_Posts>(
+      `${URI.BABY}?_embed&page=${meta && meta.page}&per_page=${
+        meta && meta.per_page
+      }&_fields=${fields}`
+    )
+
+    return { data, headers: headers['x-wp-total'] }
+  },
+
   relatedPosts: async (post_id: number): Promise<Related_Post[]> => {
     const { data } = await api.get<Related_Post[]>(
       URI.RELATED_POSTS.replace(/:id/gi, post_id.toString())

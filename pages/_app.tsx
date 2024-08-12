@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import { AppProps } from 'next/app'
-import { storeWrapper, StoreType } from '@store/store'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import PageWithLayoutType from '@constants/page'
 import theme from '@theme/index'
-import { useStore, Provider } from 'react-redux'
 import { authorizationProvider } from '@services/interceptor'
 import createCache from '@emotion/cache'
 import moment from 'moment'
@@ -18,6 +16,7 @@ import 'moment/locale/mn'
 import Head from 'next/head'
 import ReactGA4 from 'react-ga4'
 import { useRouter } from 'next/router'
+import ReactQueryProvider from '@containers/Providers/ReactQueryProvider'
 
 moment.locale('mn')
 
@@ -35,7 +34,6 @@ type Props = AppProps & {
 
 const CustomApp = ({ Component, pageProps }: Props) => {
   const Layout = Component.Layout ? Component.Layout : React.Fragment
-  const store: StoreType = useStore()
   authorizationProvider()
 
   const router = useRouter()
@@ -102,17 +100,17 @@ const CustomApp = ({ Component, pageProps }: Props) => {
             }
           />
         ) : null}
-        <Provider store={store}>
+        <ReactQueryProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <Layout>
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>
-        </Provider>
+        </ReactQueryProvider>
       </CacheProvider>
     </StylesProvider>
   )
 }
 
-export default storeWrapper.withRedux(CustomApp)
+export default CustomApp
