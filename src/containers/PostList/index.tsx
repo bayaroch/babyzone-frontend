@@ -33,7 +33,7 @@ const PostList: React.FC<PostListProps> = ({ category, tag }) => {
     const tagParam = tag ? `&tags=${tag}` : ''
 
     return postServices.getAllPosts(
-      { page: pageParam, per_page: 10, category, tag },
+      { page: pageParam, per_page: 10 },
       `${fields}${categoryParam}${tagParam}`
     )
   }
