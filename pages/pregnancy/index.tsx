@@ -1,50 +1,84 @@
-/*
- * Detail Page
- */
+import React from 'react'
+import { useQuery } from 'react-query'
 import MainLayout from '@components/Layouts/MainLayout'
 import PageWithLayoutType from '@constants/page'
-import { Box, Container } from '@mui/material'
+import {
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material'
 import Seo from '@components/Seo'
-import useCustomPosts from '@utils/hooks/useCustomPosts'
-import { useEffect } from 'react'
-import { WP_REST_API_Post } from 'wp-types'
+import { postServices } from '@services/post.services'
+import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types'
+import _ from 'lodash'
 
 const Pregnancy: PageWithLayoutType = () => {
-  // const [av, setAv] = useState<string>('01')
+  const fields =
+    'id,content,date,acf,slug,tags,title,excerpt,_links.wp:featuredmedia,_links.author,_links.wp:term,_embedded'
+  const { data: list, status, error, refetch } = useQuery<
+    { data: WP_REST_API_Posts; headers: number },
+    Error
+  >(
+    'pregnancyPosts',
+    () => postServices.getAllPregnancy({ per_page: 100, page: 1 }, `${fields}`),
+    {
+      enabled: false, // This prevents the query from running automatically
+    }
+  )
 
-  const { list, getPregnancyList } = useCustomPosts()
-
-  useEffect(() => {
-    getPregnancyList({
-      per_page: 100,
-      page: 1,
-      category: undefined,
-      tag: undefined,
-    })
-    //
-  }, [])
-  // eslint-disable-next-line no-console
-  console.log('aaa', list)
+  React.useEffect(() => {
+    refetch()
+  }, [refetch])
 
   return (
     <MainLayout>
-      <Seo title="asdasd" description="asdas" image="images/gender_chart.jpg" />
-      <Container
-        maxWidth="lg"
-        sx={{
-          padding: {
-            xs: '0',
-            sm: '0',
-          },
-        }}
-      >
-        <Box>
-          asdasd
-          {list &&
-            list?.map((p: WP_REST_API_Post, index: number) => {
-              return <Box key={index}>{p.title.rendered}</Box>
-            })}
-        </Box>
+      <Seo
+        title="Pregnancy"
+        description="Pregnancy information"
+        image="images/gender_chart.jpg"
+      />
+      <Container maxWidth="lg" sx={{ padding: { xs: '16px', sm: '24px' } }}>
+        {status === 'loading' && <Typography>Loading...</Typography>}
+        {status === 'error' && (
+          <Typography color="error">Error: {error.message}</Typography>
+        )}
+        {status === 'success' && list && (
+          <Grid container spacing={3}>
+            {list &&
+              list.data.map((post: WP_REST_API_Post) => (
+                <Grid item xs={12} sm={6} md={4} key={post.id}>
+                  <Card>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={
+                        _.get(
+                          post,
+                          "_embedded['wp:featuredmedia'][0].source_url",
+                          'placeholder-image-url'
+                        ) as string
+                      }
+                      alt={post.title?.rendered}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h6" component="div">
+                        {post.title?.rendered}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {post.excerpt?.rendered
+                          .replace(/<[^>]+>/g, '')
+                          .slice(0, 100)}
+                        ...
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
+        )}
       </Container>
     </MainLayout>
   )
