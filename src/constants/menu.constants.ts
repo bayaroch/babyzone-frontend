@@ -26,7 +26,7 @@ export const primarymenu: MenuItemType[] = [
     label: 'Холбоо Барих',
     route: 'contact',
     id: 3,
-    slug: 'contact',
+    slug: '/page/contact',
     seo: {
       image: `images/babyzone.jpg`,
       content: 'Холбоо Барих',
