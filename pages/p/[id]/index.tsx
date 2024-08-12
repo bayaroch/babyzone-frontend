@@ -58,7 +58,7 @@ interface DetailProps {
   initialData?: WP_REST_API_Post
 }
 
-const Detail: React.FC<DetailProps> = ({ error, seo, initialData }) => {
+const Detail: React.FC<DetailProps> = ({ seo, initialData }) => {
   const router = useRouter()
   const { id } = router.query
   const postId = id ? Number(id) : undefined
