@@ -18,7 +18,3 @@ const Loader: React.FC<LoaderProps> = ({ color, ...rest }) => {
 }
 
 export default Loader
-
-Loader.defaultProps = {
-  color: 'regular',
-}

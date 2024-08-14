@@ -227,13 +227,6 @@ const Detail: React.FC<DetailProps> = ({ seo, initialData }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-    return {
-      paths: [],
-      fallback: 'blocking',
-    }
-  }
-
   const res = await axios.get(URI.ALL_POST_DATA)
   const posts: CustomPostResponse[] = res.data
 

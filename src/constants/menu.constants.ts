@@ -24,9 +24,9 @@ export const primarymenu: MenuItemType[] = [
   // },
   {
     label: 'Холбоо Барих',
-    route: 'contact',
+    route: '/page/contact',
     id: 3,
-    slug: '/page/contact',
+    slug: 'contact',
     seo: {
       image: `images/babyzone.jpg`,
       content: 'Холбоо Барих',

@@ -67,4 +67,18 @@ export const postServices = {
     )
     return data
   },
+
+  postPregnancyDetail: async (post_id: number): Promise<WP_REST_API_Posts> => {
+    const { data } = await api.get<WP_REST_API_Posts>(
+      `${URI.PREGNANCY}?include[]=${post_id}&_embed`
+    )
+    return data
+  },
+
+  postBabyDetail: async (post_id: number): Promise<WP_REST_API_Posts> => {
+    const { data } = await api.get<WP_REST_API_Posts>(
+      `${URI.BABY}?include[]=${post_id}&_embed`
+    )
+    return data
+  },
 }
