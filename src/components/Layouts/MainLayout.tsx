@@ -1,16 +1,19 @@
 import React, { PropsWithChildren, useState } from 'react'
 import Header from './Header'
 import { CustomDrawer } from './CustomDrawer'
+import { Box, SxProps } from '@mui/material'
 
 interface MainLayoutProps {
   isBanner?: boolean
   darkMode?: boolean
   regular?: boolean
+  containerSX?: SxProps
 }
 
 const MainLayout: React.FC<MainLayoutProps & PropsWithChildren> = ({
   children,
   darkMode,
+  containerSX,
 }) => {
   const [open, letOpen] = useState(false)
   const setOpen = (val: boolean) => {
@@ -24,7 +27,9 @@ const MainLayout: React.FC<MainLayoutProps & PropsWithChildren> = ({
     >
       <div className="main" role="main">
         <Header open={open} setOpen={setOpen} />
-        <div style={{ position: 'relative', paddingTop: 40 }}>{children}</div>
+        <Box sx={{ position: 'relative', paddingTop: 3, ...containerSX }}>
+          {children}
+        </Box>
       </div>
       <CustomDrawer open={open} toggleDrawer={(val: boolean) => setOpen(val)} />
     </div>
